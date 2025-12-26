@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36616.10 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Budgetly", "Budgetly.csproj", "{8CB255D8-AC0D-418C-9CA6-75D0D6F99D12}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8CB255D8-AC0D-418C-9CA6-75D0D6F99D12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CB255D8-AC0D-418C-9CA6-75D0D6F99D12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CB255D8-AC0D-418C-9CA6-75D0D6F99D12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CB255D8-AC0D-418C-9CA6-75D0D6F99D12}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {903E772A-AFF5-4F13-920A-3EDF7C0C6647}
+	EndGlobalSection
+EndGlobal
