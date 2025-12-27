@@ -1,0 +1,103 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Budgetly.Site" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>Budgetly</title>
+
+    <!-- Global CSS -->
+    <link runat="server" href="~/Content/site.css" rel="stylesheet" />
+
+    <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
+</head>
+
+<body>
+    <form id="form1" runat="server">
+
+        <!--App Shell-->
+        <div class="app-shell">
+            <!--Bar on top-->
+            <header class="topbar">
+                <div class="topbar-left">
+                    <div class="avatar" aria-hidden="true"></div>
+                    <div class="welcome">
+                        <span class="welcome-label">Welcome,</span>
+                        <span class="welcome-name">Darren</span>
+                    </div>
+                </div>
+                <div class="topbar-right"></div>
+            </header>
+            <div class="app-frame">
+                <div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
+                <!--Sidebar-->
+                <div class="app-body">
+                    <aside class="sidebar" id="sidebar">
+                        <button type="button" class="icon-btn icon-btn-hamburger" id="sidebarToggle" aria-label="Menu">
+                            ☰
+                        </button>
+
+                        <nav class="sidebar-nav" aria-label="Primary">
+
+                            <a class="nav-item is-active" href="#">
+                                <span class="nav-icon" aria-hidden="true">🏠</span>
+                                <span class="nav-text">Home</span>
+                            </a>
+
+                            <a class="nav-item" href="#">
+                                <span class="nav-icon" aria-hidden="true">📊</span>
+                                <span class="nav-text">Analytics</span>
+                            </a>
+
+                            <a class="nav-item" href="#">
+                                <span class="nav-icon" aria-hidden="true">💳</span>
+                                <span class="nav-text">Wallets</span>
+                            </a>
+
+                            <a class="nav-item" href="#">
+                                <span class="nav-icon" aria-hidden="true">💵</span>
+                                <span class="nav-text">Budget Tracking</span>
+                            </a>
+
+                            <a class="nav-item" href="#">
+                                <span class="nav-icon" aria-hidden="true">🐣</span>
+                                <span class="nav-text">Your Den</span>
+                            </a>
+                        </nav>
+
+                        <div class="sidebar-bottom">
+                            <a class="nav-item" href="#">
+                                <span class="nav-icon" aria-hidden="true">⚙️</span>
+                                <span class="nav-text">Settings</span>
+                            </a>
+                        </div>
+                    </aside>
+
+                    <!--Main Content area-->
+                    <main class="main-content-container">
+                        <div class="content-card">
+                            <div class="page-title">[Page function name]</div>
+
+                            <div class="content-placeholder">
+                                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+                            </div>
+                        </div>
+                    </main>
+
+
+                </div>
+            </div>
+        </div>
+
+
+        <script src="Scripts/sidebar.js"></script>
+    </form>
+</body>
+</html>
+
+
+
+
+
+
+

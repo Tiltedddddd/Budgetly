@@ -1,0 +1,303 @@
+﻿/* =========================
+   Global / Reset
+========================= */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+:root {
+    --sidebar-collapsed: 76px;
+    --sidebar-expanded: 240px;
+}
+
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    background: #ffffff;
+    color: #0f172a;
+}
+
+/* =========================
+   App Shell + Frame + Body
+========================= */
+.app-shell {
+    min-height: 100vh;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.app-frame {
+    position: relative;
+    flex: 1;
+    min-height: 0;
+    background: #F5F7F9;
+    border-radius: 18px;
+    margin: 10px 24px 24px 24px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+.app-body {
+    position: relative;
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    gap: 16px;
+    align-items: stretch;
+}
+
+
+/* =========================
+   Sidebar
+========================= */
+.sidebar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: var(--sidebar-collapsed);
+    z-index: 50;
+    transition: width 0.2s ease;
+    background: #F5F7F9;
+    border-radius: 16px;
+    padding: 12px 10px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.sidebar.is-open {
+    width: var(--sidebar-expanded);
+}
+
+.sidebar-nav,
+.sidebar-bottom {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+
+.icon-btn {
+    margin-left:15px;
+    border: none;
+    background: transparent;
+    font-size: 22px;
+    cursor: pointer;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+}
+
+.sidebar-nav {
+    margin-top: 14px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+}
+
+.nav-item {
+    width: 100%;
+    height: 52px;
+    border-radius: 14px;
+    text-decoration: none;
+    color: #0f172a;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+
+    justify-content: flex-start;
+    padding-left: 14px;
+}
+
+/* Nav items when expanded */
+.sidebar.is-open .nav-item {
+    justify-content: flex-start;
+    padding-left: 14px;
+}
+
+/* Icon “bubble” stays same size always */
+.nav-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
+    display: grid;
+    place-items: center;
+    background: #E0E8EF;
+    font-size: 20px;
+    flex: 0 0 auto;
+
+    align-self: center;
+}
+
+.nav-item.is-active .nav-icon {
+    background: #79C1FF;
+}
+
+.nav-text {
+    opacity: 0;
+    transform: translateX(-6px);
+    pointer-events: none;
+    white-space: nowrap;
+    transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.sidebar.is-open .nav-text {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+}
+
+
+.sidebar-bottom {
+    margin-top: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.sidebar.is-open .sidebar-bottom {
+    justify-content: flex-start;
+}
+
+/* =========================
+   Sidebar Overlay
+========================= */
+
+.sidebar-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    border-radius: 18px; 
+    z-index: 40;
+}
+
+    .sidebar-overlay.is-open {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+/* =========================
+   Main area
+========================= */
+.main-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* =========================
+   Top bar
+========================= */
+.topbar {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 5px 14px;
+    margin: 14px 24px 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.topbar-right {
+    display: flex;
+    width: 140px;
+    height: 34px;
+    border-radius: 5px;
+    background: #79C1FF;
+}
+
+
+.topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 999px;
+    background: #E0E8EF;
+}
+
+.welcome-label {
+    font-size: 14px;
+    color: #64748b;
+    line-height: 1.2;
+}
+
+.welcome-name {
+    font-size: 14px;
+    color: #64748b;
+    line-height: 1.2;
+}
+
+/* =========================
+   Content area
+========================= */
+.main-content-container {
+    margin-left: calc(var(--sidebar-collapsed) + 16px);
+    flex: 1;
+    background: #F5F7F9;
+    border-radius: 16px;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+}
+
+.content-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.page-title {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.content-placeholder {
+    flex: 1;
+    background: #FFFFFF; 
+    border-radius: 14px;
+    padding: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #64748b;
+}
+
+/* =========================
+   Responsive (optional)
+========================= */
+@media (max-width: 900px) {
+    .app-shell {
+        padding: 14px;
+    }
+
+    .app-frame {
+        padding: 14px;
+        gap: 14px;
+    }
+}
