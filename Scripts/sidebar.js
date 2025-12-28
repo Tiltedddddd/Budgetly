@@ -1,25 +1,17 @@
 ﻿(() => {
-    const sidebar = document.getElementById("sidebar");
+    const frame = document.querySelector(".app-frame");
     const toggleBtn = document.getElementById("sidebarToggle");
     const overlay = document.getElementById("sidebarOverlay");
 
-    if (!sidebar || !toggleBtn || !overlay) return;
+    if (!frame || !toggleBtn || !overlay) return;
 
-    const open = () => {
-        sidebar.classList.add("is-open");
-        overlay.classList.add("is-open");
-        overlay.setAttribute("aria-hidden", "false");
-    };
-
-    const close = () => {
-        sidebar.classList.remove("is-open");
-        overlay.classList.remove("is-open");
-        overlay.setAttribute("aria-hidden", "true");
-    };
+    const close = () => frame.classList.remove("is-open");
 
     toggleBtn.addEventListener("click", () => {
-        sidebar.classList.contains("is-open") ? close() : open();
+        const isOpen = frame.classList.toggle("is-open");
+        toggleBtn.setAttribute("aria-expanded", isOpen);
     });
+
 
     overlay.addEventListener("click", close);
 

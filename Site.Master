@@ -33,7 +33,7 @@
                 <!--Sidebar-->
                 <div class="app-body">
                     <aside class="sidebar" id="sidebar">
-                        <button type="button" class="icon-btn icon-btn-hamburger" id="sidebarToggle" aria-label="Menu">
+                        <button type="button" class="icon-btn icon-btn-hamburger" id="sidebarToggle" aria-expanded="false" aria-label="Menu">
                             ☰
                         </button>
 
