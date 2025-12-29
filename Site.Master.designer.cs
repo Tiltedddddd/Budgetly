@@ -87,6 +87,24 @@ namespace Budgetly
         protected global::System.Web.UI.HtmlControls.HtmlAnchor navDen;
 
         /// <summary>
+        /// navViewData control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor navViewData;
+
+        /// <summary>
+        /// navCRUD control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor navCRUD;
+
+        /// <summary>
         /// navSettings control.
         /// </summary>
         /// <remarks>

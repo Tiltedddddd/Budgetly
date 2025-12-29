@@ -27,6 +27,10 @@ namespace Budgetly
                 navGoalSetting.Attributes["class"] += " is-active";
             else if (path.Contains("settingsPage.aspx"))
                 navSettings.Attributes["class"] += " is-active";
+            else if (path.Contains("CRUDData.aspx"))
+                navViewData.Attributes["class"] += " is-active";
+            else if (path.Contains("viewData.aspx"))
+                navCRUD.Attributes["class"] += " is-active";
 
         }
     }
