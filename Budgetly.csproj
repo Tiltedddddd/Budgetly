@@ -79,23 +79,56 @@
     <Content Include="Content\images\icons\navTransactions.svg" />
     <Content Include="Content\images\icons\navWallets.svg" />
     <Content Include="Pages\analyticsPage.aspx" />
+    <Content Include="Pages\CrudData.aspx" />
     <Content Include="Pages\denPage.aspx" />
     <Content Include="Pages\goalSettingPage.aspx" />
     <Content Include="Pages\homePage.aspx" />
     <Content Include="Pages\settingsPage.aspx" />
     <Content Include="Pages\transactionsPage.aspx" />
+    <Content Include="Pages\ViewData.aspx" />
     <Content Include="Pages\walletsPage.aspx" />
     <Content Include="Scripts\sidebar.js" />
     <Content Include="testpage.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class\Account.cs" />
+    <Compile Include="Class\AccountImage.cs" />
+    <Compile Include="Class\Badge.cs" />
+    <Compile Include="Class\Budget.cs" />
+    <Compile Include="Class\BudgetEnvelope.cs" />
+    <Compile Include="Class\BudgetProgress.cs" />
+    <Compile Include="Class\Category.cs" />
+    <Compile Include="Class\Challenge.cs" />
+    <Compile Include="Class\DbHelper.cs" />
+    <Compile Include="Class\EcoScore.cs" />
+    <Compile Include="Class\GmailTransactionTracker.cs" />
+    <Compile Include="Class\Income.cs" />
+    <Compile Include="Class\MerchantRule.cs" />
+    <Compile Include="Class\Pet.cs" />
+    <Compile Include="Class\PetStatusImage.cs" />
+    <Compile Include="Class\Subscription.cs" />
+    <Compile Include="Class\Transaction.cs" />
+    <Compile Include="Class\TransactionAttachment.cs" />
+    <Compile Include="Class\User.cs" />
+    <Compile Include="Class\UserBadge.cs" />
+    <Compile Include="Class\UserChallenge.cs" />
+    <Compile Include="Class\UserPet.cs" />
+    <Compile Include="Class\UserProfile.cs" />
+    <Compile Include="Class\UserSubscription.cs" />
     <Compile Include="Pages\analyticsPage.aspx.cs">
       <DependentUpon>analyticsPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\analyticsPage.aspx.designer.cs">
       <DependentUpon>analyticsPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\CrudData.aspx.cs">
+      <DependentUpon>CrudData.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\CrudData.aspx.designer.cs">
+      <DependentUpon>CrudData.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\denPage.aspx.cs">
       <DependentUpon>denPage.aspx</DependentUpon>
@@ -132,6 +165,13 @@
     <Compile Include="Pages\transactionsPage.aspx.designer.cs">
       <DependentUpon>transactionsPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ViewData.aspx.cs">
+      <DependentUpon>ViewData.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ViewData.aspx.designer.cs">
+      <DependentUpon>ViewData.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\walletsPage.aspx.cs">
       <DependentUpon>walletsPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -165,7 +205,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

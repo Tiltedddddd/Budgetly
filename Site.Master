@@ -83,6 +83,7 @@
                                 <span class="nav-text">Your Den</span>
                             </a>
 
+                            <!--
                             <a id="navViewData" class="nav-item" href="~/Pages/viewData.aspx" runat="server">
                                 <span class="nav-icon">
                                     <img runat="server" src="~/Content/images/icons/viewdata.png" alt="" aria-hidden="true" />
@@ -96,6 +97,7 @@
                                 </span>
                                 <span class="nav-text">CRUD Data</span>
                             </a>
+                            -->
 
                         </nav>
 
