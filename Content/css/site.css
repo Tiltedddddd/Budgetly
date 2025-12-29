@@ -124,13 +124,32 @@ body {
     width: 100%;
     height: 78px;
     border-radius: 14px;
-    text-decoration: none;
     color: var(--c-text);
     background: transparent;
     display: flex;
     align-items: center;
+    text-decoration: none;
     gap: 20px;
     padding-left: 14px;
+    transition: background-color var(--t-fast), transform var(--t-fast);
+}
+
+.app-frame.is-open .nav-item:hover {
+    background: rgba(224, 232, 239, 0.45);
+}
+
+.app-frame.is-open .nav-item.is-active {
+    background: rgba(224, 232, 239, 0.65);
+}
+
+.nav-item:hover .nav-icon {
+    background: #79C1FF;
+    transform: scale(1.03); 
+}
+
+.nav-item:focus-visible {
+    outline: 2px solid var(--c-accent);
+    outline-offset: 3px;
 }
 
 .nav-icon {
@@ -142,8 +161,9 @@ body {
     background: var(--c-nav-btn);
     font-size: 20px;
     flex: 0 0 auto;
-
     align-self: center;
+
+    transition: background-color var(--t-fast), transform var(--t-fast);
 }
 
 .toggle-icon {
@@ -277,7 +297,7 @@ body {
 }
 
 .page-title {
-    font-size: 14px;
+    font-size: 20px;
     font-weight: 600;
     margin-bottom: 20px;
 }

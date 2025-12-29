@@ -11,6 +11,22 @@ namespace Budgetly
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            string path = Request.AppRelativeCurrentExecutionFilePath;
+
+            if (path.Contains("homePage.aspx"))
+                navHome.Attributes["class"] += " is-active";
+            else if (path.Contains("analyticsPage.aspx"))
+                navAnalytics.Attributes["class"] += " is-active";
+            else if (path.Contains("transactionsPage.aspx"))
+                navTransactions.Attributes["class"] += " is-active";
+            else if (path.Contains("walletsPage.aspx"))
+                navWallets.Attributes["class"] += " is-active";
+            else if (path.Contains("denPage.aspx"))
+                navDen.Attributes["class"] += " is-active";
+            else if (path.Contains("goalSettingPage.aspx"))
+                navGoalSetting.Attributes["class"] += " is-active";
+            else if (path.Contains("settingsPage.aspx"))
+                navSettings.Attributes["class"] += " is-active";
 
         }
     }

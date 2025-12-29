@@ -41,42 +41,42 @@
 
                         <nav class="sidebar-nav" aria-label="Primary">
 
-                            <a class="nav-item is-active" href="#">
+                            <a id="navHome" class="nav-item" href="~/Pages/homePage.aspx" runat="server">
                                 <span class="nav-icon">
                                     <img runat="server" src="~/Content/images/icons/navHome.svg" alt="" aria-hidden="true" />
                                 </span>
                                 <span class="nav-text">Home</span>
                             </a>
 
-                            <a class="nav-item" href="#">
+                            <a id="navAnalytics" class="nav-item" href="~/Pages/analyticsPage.aspx" runat="server">
                                 <span class="nav-icon">
                                     <img runat="server" src="~/Content/images/icons/navAnalytics.svg" alt="" aria-hidden="true" />
                                 </span>
                                 <span class="nav-text">Analytics</span>
                             </a>
 
-                            <a class="nav-item" href="#">
+                            <a id="navTransactions" class="nav-item" href="~/Pages/transactionsPage.aspx" runat="server">
                                 <span class="nav-icon">
                                     <img runat="server" src="~/Content/images/icons/navTransactions.svg" alt="" aria-hidden="true" />
                                 </span>
                                 <span class="nav-text">Transactions</span>
                             </a>
 
-                            <a class="nav-item" href="#">
+                            <a id="navWallets" class="nav-item" href="~/Pages/walletsPage.aspx" runat="server">
                                 <span class="nav-icon">
                                     <img runat="server" src="~/Content/images/icons/navWallets.svg" alt="" aria-hidden="true" />
                                 </span>
                                 <span class="nav-text">Payment Sources</span>
                             </a>
 
-                            <a class="nav-item" href="#">
+                            <a id="navGoalSetting" class="nav-item" href="~/Pages/goalSettingPage.aspx" runat="server">
                                 <span class="nav-icon">
                                     <img runat="server" src="~/Content/images/icons/navGoalSetting.svg" alt="" aria-hidden="true" />
                                 </span>
                                 <span class="nav-text">Goal Setting</span>
                             </a>
 
-                            <a class="nav-item" href="#">
+                            <a id="navDen" class="nav-item" href="~/Pages/denPage.aspx" runat="server">
                                 <span class="nav-icon">
                                     <img runat="server" src="~/Content/images/icons/navDen.svg" alt="" aria-hidden="true" />
                                 </span>
@@ -86,7 +86,7 @@
                         </nav>
 
                         <div class="sidebar-bottom">
-                            <a class="nav-item" href="#">
+                            <a id="navSettings" class="nav-item" href="~/Pages/settingsPage.aspx" runat="server">
                                 <span class="nav-icon">
                                     <img runat="server" src="~/Content/images/icons/navSettings.svg" alt="" aria-hidden="true" />
                                 </span>
@@ -98,7 +98,7 @@
                     <!--Main Content area-->
                     <main class="main-content-container">
                         <div class="content-card">
-                            <div class="page-title">[Page function name]</div>
+                            <div class="page-title"><%= Page.Title %></div>
 
                             <div class="content-placeholder">
                                 <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
@@ -112,7 +112,7 @@
         </div>
 
 
-        <script src="Scripts/sidebar.js"></script>
+        <script src="/Scripts/sidebar.js"></script>
     </form>
 </body>
 </html>

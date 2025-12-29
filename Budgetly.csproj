@@ -78,14 +78,71 @@
     <Content Include="Content\images\icons\navToggle2.svg" />
     <Content Include="Content\images\icons\navTransactions.svg" />
     <Content Include="Content\images\icons\navWallets.svg" />
+    <Content Include="Pages\analyticsPage.aspx" />
+    <Content Include="Pages\denPage.aspx" />
+    <Content Include="Pages\goalSettingPage.aspx" />
+    <Content Include="Pages\homePage.aspx" />
+    <Content Include="Pages\settingsPage.aspx" />
+    <Content Include="Pages\transactionsPage.aspx" />
+    <Content Include="Pages\walletsPage.aspx" />
     <Content Include="Scripts\sidebar.js" />
     <Content Include="testpage.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pages\analyticsPage.aspx.cs">
+      <DependentUpon>analyticsPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\analyticsPage.aspx.designer.cs">
+      <DependentUpon>analyticsPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\denPage.aspx.cs">
+      <DependentUpon>denPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\denPage.aspx.designer.cs">
+      <DependentUpon>denPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\goalSettingPage.aspx.cs">
+      <DependentUpon>goalSettingPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\goalSettingPage.aspx.designer.cs">
+      <DependentUpon>goalSettingPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\homePage.aspx.cs">
+      <DependentUpon>homePage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\homePage.aspx.designer.cs">
+      <DependentUpon>homePage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\settingsPage.aspx.cs">
+      <DependentUpon>settingsPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\settingsPage.aspx.designer.cs">
+      <DependentUpon>settingsPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\transactionsPage.aspx.cs">
+      <DependentUpon>transactionsPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\transactionsPage.aspx.designer.cs">
+      <DependentUpon>transactionsPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\walletsPage.aspx.cs">
+      <DependentUpon>walletsPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\walletsPage.aspx.designer.cs">
+      <DependentUpon>walletsPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
@@ -108,9 +165,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Pages\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
