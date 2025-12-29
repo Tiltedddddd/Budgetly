@@ -7,7 +7,7 @@
     <title>Budgetly</title>
 
     <!-- Global CSS -->
-    <link runat="server" href="~/Content/site.css" rel="stylesheet" />
+    <link runat="server" href="~/Content/css/site.css" rel="stylesheet" />
 
     <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
 </head>
@@ -33,41 +33,63 @@
                 <!--Sidebar-->
                 <div class="app-body">
                     <aside class="sidebar" id="sidebar">
-                        <button type="button" class="icon-btn icon-btn-hamburger" id="sidebarToggle" aria-expanded="false" aria-label="Menu">
-                            ☰
+                        <button type="button" class="icon-btn icon-btn-hamburger" id="sidebarToggle"
+                            aria-expanded="false" aria-label="Menu">
+                            <img runat="server" class="toggle-icon toggle-closed" src="~/Content/images/icons/navToggle.svg" alt="" aria-hidden="true" />
+                            <img runat="server" class="toggle-icon toggle-open" src="~/Content/images/icons/navToggle2.svg" alt="" aria-hidden="true" />
                         </button>
 
                         <nav class="sidebar-nav" aria-label="Primary">
 
                             <a class="nav-item is-active" href="#">
-                                <span class="nav-icon" aria-hidden="true">🏠</span>
+                                <span class="nav-icon">
+                                    <img runat="server" src="~/Content/images/icons/navHome.svg" alt="" aria-hidden="true" />
+                                </span>
                                 <span class="nav-text">Home</span>
                             </a>
 
                             <a class="nav-item" href="#">
-                                <span class="nav-icon" aria-hidden="true">📊</span>
+                                <span class="nav-icon">
+                                    <img runat="server" src="~/Content/images/icons/navAnalytics.svg" alt="" aria-hidden="true" />
+                                </span>
                                 <span class="nav-text">Analytics</span>
                             </a>
 
                             <a class="nav-item" href="#">
-                                <span class="nav-icon" aria-hidden="true">💳</span>
-                                <span class="nav-text">Wallets</span>
+                                <span class="nav-icon">
+                                    <img runat="server" src="~/Content/images/icons/navTransactions.svg" alt="" aria-hidden="true" />
+                                </span>
+                                <span class="nav-text">Transactions</span>
                             </a>
 
                             <a class="nav-item" href="#">
-                                <span class="nav-icon" aria-hidden="true">💵</span>
-                                <span class="nav-text">Budget Tracking</span>
+                                <span class="nav-icon">
+                                    <img runat="server" src="~/Content/images/icons/navWallets.svg" alt="" aria-hidden="true" />
+                                </span>
+                                <span class="nav-text">Payment Sources</span>
                             </a>
 
                             <a class="nav-item" href="#">
-                                <span class="nav-icon" aria-hidden="true">🐣</span>
+                                <span class="nav-icon">
+                                    <img runat="server" src="~/Content/images/icons/navGoalSetting.svg" alt="" aria-hidden="true" />
+                                </span>
+                                <span class="nav-text">Goal Setting</span>
+                            </a>
+
+                            <a class="nav-item" href="#">
+                                <span class="nav-icon">
+                                    <img runat="server" src="~/Content/images/icons/navDen.svg" alt="" aria-hidden="true" />
+                                </span>
                                 <span class="nav-text">Your Den</span>
                             </a>
+
                         </nav>
 
                         <div class="sidebar-bottom">
                             <a class="nav-item" href="#">
-                                <span class="nav-icon" aria-hidden="true">⚙️</span>
+                                <span class="nav-icon">
+                                    <img runat="server" src="~/Content/images/icons/navSettings.svg" alt="" aria-hidden="true" />
+                                </span>
                                 <span class="nav-text">Settings</span>
                             </a>
                         </div>

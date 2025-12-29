@@ -68,7 +68,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
-    <Content Include="Content\site.css" />
+    <Content Include="Content\css\site.css" />
+    <Content Include="Content\images\icons\navAnalytics.svg" />
+    <Content Include="Content\images\icons\navDen.svg" />
+    <Content Include="Content\images\icons\navGoalSetting.svg" />
+    <Content Include="Content\images\icons\navHome.svg" />
+    <Content Include="Content\images\icons\navSettings.svg" />
+    <Content Include="Content\images\icons\navToggle.svg" />
+    <Content Include="Content\images\icons\navToggle2.svg" />
+    <Content Include="Content\images\icons\navTransactions.svg" />
+    <Content Include="Content\images\icons\navWallets.svg" />
     <Content Include="Scripts\sidebar.js" />
     <Content Include="testpage.aspx" />
     <Content Include="Web.config" />

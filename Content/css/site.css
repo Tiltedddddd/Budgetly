@@ -10,7 +10,7 @@
 :root {
     /*Sidebar layout*/
     --sidebar-collapsed: 76px;
-    --sidebar-expanded: 240px;
+    --sidebar-expanded: 270px;
     /*Colors*/
     --c-app-bg: #F5F7F9; /* container background */
     --c-surface: #FFFFFF; /* cards + site background */
@@ -23,7 +23,7 @@
     --r-lg: 18px; /* large = app-frame / overlay */
     --r-md: 16px; /* medium = sidebar/topbar/main container */
     --r-sm: 14px; /* small = nav items / icon bubble / content placeholder */
-    --r-pill: 999px; /*I js use a placeholder cuz idk what button to make this*/
+    --r-pill: 999px; /*user avatar circle*/
     /*Transitions*/
     --t-fast: 0.2s ease;
     --t-snap: 0.18s ease;
@@ -35,7 +35,6 @@
 
 html, body {
     height: 100%;
-    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
 }
 
 body {
@@ -106,15 +105,15 @@ body {
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 15px;
 }
 
 
 .icon-btn {
-    margin-left:15px;
+    margin-left:25px;
+    margin-bottom: 5px;
     border: none;
     background: transparent;
-    font-size: 22px;
     cursor: pointer;
     width: 44px;
     height: 44px;
@@ -123,20 +122,20 @@ body {
 
 .nav-item {
     width: 100%;
-    height: 52px;
+    height: 78px;
     border-radius: 14px;
     text-decoration: none;
     color: var(--c-text);
     background: transparent;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 20px;
     padding-left: 14px;
 }
 
 .nav-icon {
-    width: 46px;
-    height: 46px;
+    width: 55px;
+    height: 55px;
     border-radius: var(--r-sm);
     display: grid;
     place-items: center;
@@ -145,6 +144,27 @@ body {
     flex: 0 0 auto;
 
     align-self: center;
+}
+
+.toggle-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.toggle-closed {
+    display: block;
+}
+
+.toggle-open {
+    display: none;
+}
+
+.app-frame.is-open .toggle-closed {
+    display: none;
+}
+
+.app-frame.is-open .toggle-open {
+    display: block;
 }
 
 .nav-item.is-active .nav-icon {
@@ -164,6 +184,7 @@ body {
     transform: translateX(0);
     pointer-events: auto;
 }
+
 
 
 .sidebar-bottom {
