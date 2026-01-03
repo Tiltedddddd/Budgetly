@@ -13,32 +13,38 @@
             margin: 20px auto;
             font-family: Arial, sans-serif;
         }
+
         .table-selector {
             margin: 20px 0;
             padding: 10px;
             background: #f5f5f5;
             border-radius: 5px;
         }
+
         .grid-container {
             margin-top: 20px;
             overflow-x: auto;
         }
+
         .grid-view {
             width: 100%;
             border-collapse: collapse;
         }
-        .grid-view th {
-            background-color: #007bff;
-            color: white;
-            padding: 8px;
-        }
-        .grid-view td {
-            padding: 8px;
-            border-bottom: 1px solid #ddd;
-        }
-        .grid-view tr:hover {
-            background-color: #f5f5f5;
-        }
+
+            .grid-view th {
+                background-color: #007bff;
+                color: white;
+                padding: 8px;
+            }
+
+            .grid-view td {
+                padding: 8px;
+                border-bottom: 1px solid #ddd;
+            }
+
+            .grid-view tr:hover {
+                background-color: #f5f5f5;
+            }
     </style>
 
     <div class="container">
@@ -55,65 +61,102 @@
                 Width="260px">
 
                 <asp:ListItem Text="-- Select Table --" Value="" />
-                <asp:ListItem Text="Users" />
-                <asp:ListItem Text="UserProfiles" />
-                <asp:ListItem Text="Subscriptions" />
-                <asp:ListItem Text="UserSubscriptions" />
-                <asp:ListItem Text="Accounts" />
-                <asp:ListItem Text="AccountImages" />
-                <asp:ListItem Text="Categories" />
-                <asp:ListItem Text="Transactions" />
-                <asp:ListItem Text="TransactionAttachments" />
-                <asp:ListItem Text="GmailTransactionTracker" />
-                <asp:ListItem Text="Income" />
-                <asp:ListItem Text="Budgets" />
-                <asp:ListItem Text="BudgetEnvelopes" />
-                <asp:ListItem Text="BudgetProgress" />
-                <asp:ListItem Text="Pets" />
-                <asp:ListItem Text="UserPets" />
-                <asp:ListItem Text="PetStatusImages" />
-                <asp:ListItem Text="Badges" />
-                <asp:ListItem Text="UserBadges" />
-                <asp:ListItem Text="Challenges" />
-                <asp:ListItem Text="UserChallenges" />
-                <asp:ListItem Text="LeaderboardStats" />
-                <asp:ListItem Text="EcoScores" />
-                <asp:ListItem Text="MerchantRules" />
+                <asp:ListItem Text="Users" Value="Users" />
+                <asp:ListItem Text="UserProfiles" Value="UserProfiles" />
+                <asp:ListItem Text="Subscriptions" Value="Subscriptions" />
+                <asp:ListItem Text="UserSubscriptions" Value="UserSubscriptions" />
+                <asp:ListItem Text="Accounts" Value="Accounts" />
+                <asp:ListItem Text="AccountImages" Value="AccountImages" />
+                <asp:ListItem Text="Categories" Value="Categories" />
+                <asp:ListItem Text="Transactions" Value="Transactions" />
+                <asp:ListItem Text="TransactionAttachments" Value="TransactionAttachments" />
+                <asp:ListItem Text="GmailTransactionTracker" Value="GmailTransactionTracker" />
+                <asp:ListItem Text="Income" Value="Income" />
+                <asp:ListItem Text="Budgets" Value="Budgets" />
+                <asp:ListItem Text="BudgetEnvelopes" Value="BudgetEnvelopes" />
+                <asp:ListItem Text="BudgetProgress" Value="BudgetProgress" />
+                <asp:ListItem Text="Pets" Value="Pets" />
+                <asp:ListItem Text="UserPets" Value="UserPets" />
+                <asp:ListItem Text="PetStatusImages" Value="PetStatusImages" />
+                <asp:ListItem Text="Badges" Value="Badges" />
+                <asp:ListItem Text="UserBadges" Value="UserBadges" />
+                <asp:ListItem Text="Challenges" Value="Challenges" />
+                <asp:ListItem Text="UserChallenges" Value="UserChallenges" />
+                <asp:ListItem Text="LeaderboardStats" Value="LeaderboardStats" />
+                <asp:ListItem Text="EcoScores" Value="EcoScores" />
+                <asp:ListItem Text="MerchantRules" Value="MerchantRules" />
             </asp:DropDownList>
 
             <asp:Button ID="btnRefresh" runat="server"
                 Text="Refresh"
                 OnClick="btnRefresh_Click"
-                Style="margin-left:10px;" />
+                Style="margin-left: 10px;" />
 
             <asp:Label ID="lblMessage" runat="server"
                 ForeColor="Green"
-                Style="margin-left:10px;" />
+                Style="margin-left: 10px;" />
 
             <asp:Label ID="lblError" runat="server"
                 ForeColor="Red"
-                Style="margin-left:10px;" />
+                Style="margin-left: 10px;" />
         </div>
 
         <!-- GRID -->
         <div class="grid-container">
             <asp:GridView ID="gvData" runat="server"
                 AutoGenerateColumns="true"
-                AutoGenerateEditButton="true"
+                AutoGenerateSelectButton="true"
                 AutoGenerateDeleteButton="true"
                 CssClass="grid-view"
                 AllowPaging="true"
                 PageSize="10"
-                OnRowEditing="gv_RowEditing"
-                OnRowUpdating="gv_RowUpdating"
+                OnSelectedIndexChanged="gvData_SelectedIndexChanged"
                 OnRowDeleting="gv_RowDeleting"
-                OnRowCancelingEdit="gv_RowCancel"
                 OnPageIndexChanging="gvData_PageIndexChanging">
             </asp:GridView>
+
         </div>
 
+        <!-- CATEGORY CRUD PANEL -->
+        <asp:Panel ID="pnlCategories" runat="server" Visible="false" Style="margin-top: 20px; background: #fff7e6; padding: 12px; border-radius: 8px;">
+            <h3>Manage Categories</h3>
+
+            <asp:HiddenField ID="hfCategoryID" runat="server" />
+
+            <div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: flex-end;">
+                <div>
+                    <div>Category Name</div>
+                    <asp:TextBox ID="txtCategoryName" runat="server" Width="220px" />
+                </div>
+
+                <div>
+                    <div>Eco Weight (0.00 to 1.00)</div>
+                    <asp:TextBox ID="txtEcoWeight" runat="server" Width="120px" />
+                </div>
+
+                <div>
+                    <div>Is Essential</div>
+                    <asp:CheckBox ID="chkIsEssential" runat="server" />
+                </div>
+
+                <div>
+                    <div>Icon Path (optional)</div>
+                    <asp:TextBox ID="txtIconPath" runat="server" Width="240px" />
+                </div>
+
+                <asp:Button ID="btnAddCategory" runat="server" Text="Add" OnClick="btnAddCategory_Click" />
+                <asp:Button ID="btnUpdateCategory" runat="server" Text="Update" OnClick="btnUpdateCategory_Click" />
+                <asp:Button ID="btnClearCategory" runat="server" Text="Clear" OnClick="btnClearCategory_Click" />
+            </div>
+
+            <div style="margin-top: 10px;">
+                <small>Tip: Click a row in the grid (we’ll enable selection) to load it for updating.</small>
+            </div>
+        </asp:Panel>
+
+
         <!-- STATS -->
-        <div style="margin-top:20px; background:#f0f8ff; padding:10px; border-radius:5px;">
+        <div style="margin-top: 20px; background: #f0f8ff; padding: 10px; border-radius: 5px;">
             <h3>Quick Stats</h3>
             <asp:Label ID="lblStats" runat="server" />
         </div>

@@ -78,6 +78,8 @@
     <Content Include="Content\images\icons\navToggle2.svg" />
     <Content Include="Content\images\icons\navTransactions.svg" />
     <Content Include="Content\images\icons\navWallets.svg" />
+    <Content Include="Database\schema.sql" />
+    <Content Include="Database\seed.sql" />
     <Content Include="Pages\analyticsPage.aspx" />
     <Content Include="Pages\CrudData.aspx" />
     <Content Include="Pages\denPage.aspx" />
@@ -196,6 +198,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Database\setup-db.bat" />
     <None Include="packages.config" />
     <Content Include="Site.Master" />
     <None Include="Web.Debug.config">

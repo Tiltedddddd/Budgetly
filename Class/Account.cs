@@ -11,5 +11,6 @@ namespace Budgetly.Class
         public decimal Balance { get; set; }
         public bool IsGmailSyncEnabled { get; set; }
         public DateTime? LastSyncDate { get; set; }
+        public bool IsDefault { get; set; }
     }
 }
