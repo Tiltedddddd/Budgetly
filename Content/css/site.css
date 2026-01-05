@@ -9,7 +9,7 @@
 
 :root {
     /*Sidebar layout*/
-    --sidebar-collapsed: 76px;
+    --sidebar-collapsed: 88px;
     --sidebar-expanded: 270px;
     /*Colors*/
     --c-app-bg: #F5F7F9; /* container background */
@@ -91,18 +91,30 @@ body {
     border-radius: var(--r-md);
     padding: 12px 10px;
 
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    gap: 10px;
+
+    overflow: hidden;
 }
 
 .app-frame.is-open .sidebar {
     width: var(--sidebar-expanded);
 }
 
-.sidebar-nav,
+.sidebar-nav {
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 6px;
+    scrollbar-width: thin;
+
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
 .sidebar-bottom {
-    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -110,14 +122,17 @@ body {
 
 
 .icon-btn {
-    margin-left:25px;
-    margin-bottom: 5px;
+    margin: 0 0 6px 0;
     border: none;
     background: transparent;
     cursor: pointer;
     width: 44px;
     height: 44px;
     border-radius: 12px;
+    display: grid;
+    place-items: center;
+    justify-self: start;
+    margin-left: 14px;
 }
 
 .nav-item {
@@ -196,20 +211,19 @@ body {
     transform: translateX(-6px);
     pointer-events: none;
     white-space: nowrap;
-    transition: opacity var(--t-snap), transform var(--t-snap);
+
+    width: 0;
+    overflow: hidden;
+
+    transition: opacity var(--t-snap), transform var(--t-snap), width var(--t-snap);
 }
 
 .app-frame.is-open .nav-text {
     opacity: 1;
     transform: translateX(0);
     pointer-events: auto;
-}
 
-
-
-.sidebar-bottom {
-    margin-top: auto;
-    display: flex;
+    width: auto;
 }
 
 
