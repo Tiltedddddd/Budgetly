@@ -48,6 +48,7 @@ CREATE TABLE UserSubscriptions (
     IsActive BIT NOT NULL DEFAULT 1,
     StartDate DATETIME2 NOT NULL,
     EndDate DATETIME2 NULL,
+    CONSTRAINT CK_UserSubscriptions_DateRange CHECK (EndDate IS NULL OR EndDate >= StartDate),
     CONSTRAINT FK_UserSubscriptions_Users FOREIGN KEY (UserID) REFERENCES Users(UserID),
     CONSTRAINT FK_UserSubscriptions_Subscriptions FOREIGN KEY (SubscriptionID) REFERENCES Subscriptions(SubscriptionID),
     CONSTRAINT UQ_UserSubscriptions UNIQUE (UserID, SubscriptionID)
@@ -63,6 +64,7 @@ CREATE TABLE Accounts (
     IsGmailSyncEnabled BIT NOT NULL DEFAULT 0,
     LastSyncDate DATETIME2 NULL,
     IsDefault BIT NOT NULL DEFAULT 0,
+    CONSTRAINT CK_Accounts_Type CHECK (AccountType IN ('Savings','Credit','Cash','Digital')),
     CONSTRAINT FK_Accounts_Users FOREIGN KEY (UserID) REFERENCES Users(UserID)
 );
 
@@ -92,10 +94,12 @@ CREATE TABLE Transactions (
     CategoryID INT NOT NULL,
     Amount DECIMAL(18,2) NOT NULL,
     TransactionType VARCHAR(10) NOT NULL,
-    TransactionDate DATETIME2 NOT NULL,
+    TransactionDate DATETIME2 NOT NULL DEFAULT SYSUTCDATETIME(),
     Merchant VARCHAR(100) NULL,
     Description VARCHAR(255) NULL,
     Source VARCHAR(20) NOT NULL,
+
+    CONSTRAINT CK_Transactions_Amount_Positive CHECK (Amount > 0),
     CONSTRAINT FK_Transactions_Accounts FOREIGN KEY (AccountID) REFERENCES Accounts(AccountID),
     CONSTRAINT FK_Transactions_Categories FOREIGN KEY (CategoryID) REFERENCES Categories(CategoryID),
     CONSTRAINT CK_Transactions_Type CHECK (TransactionType IN ('INCOME','EXPENSE')),
@@ -122,6 +126,7 @@ CREATE TABLE GmailTransactionTracker (
     ParsedDate DATETIME2 NULL,
     LinkedTransactionID INT NULL,
     Status VARCHAR(20) NOT NULL,
+    CONSTRAINT CK_GmailTracker_Status CHECK (Status IN ('New','Parsed','Linked','Ignored','Error')),
     CONSTRAINT FK_GmailTracker_Users FOREIGN KEY (UserID) REFERENCES Users(UserID),
     CONSTRAINT FK_GmailTracker_Transactions FOREIGN KEY (LinkedTransactionID) REFERENCES Transactions(TransactionID),
     CONSTRAINT UQ_GmailTracker_UserMessage UNIQUE (UserID, EmailMessageID)
@@ -135,9 +140,10 @@ CREATE TABLE Income (
     YearMonth CHAR(7) NOT NULL,  -- "YYYY-MM"
     Amount DECIMAL(18,2) NOT NULL,
     Source VARCHAR(50) NULL,
+    CONSTRAINT CK_Income_Amount_Positive CHECK (Amount > 0),
     CONSTRAINT FK_Income_Users FOREIGN KEY (UserID) REFERENCES Users(UserID),
     CONSTRAINT FK_Income_Accounts FOREIGN KEY (AccountID) REFERENCES Accounts(AccountID),
-    CONSTRAINT CK_Income_YearMonth CHECK (YearMonth LIKE '[1-2][0-9][0-9][0-9]-[0-1][0-9]')
+    CONSTRAINT CK_Income_YearMonth CHECK (YearMonth LIKE '[1-2][0-9][0-9][0-9]-[0-1][0-9]' AND SUBSTRING(YearMonth, 6, 2) BETWEEN '01' AND '12')
 );
 
 -- BUDGETS (NO Title)
@@ -147,9 +153,10 @@ CREATE TABLE Budgets (
     YearMonth CHAR(7) NOT NULL, -- "YYYY-MM"
     TotalAmount DECIMAL(18,2) NOT NULL,
     CreatedOn DATETIME2 NOT NULL DEFAULT SYSUTCDATETIME(),
+    CONSTRAINT CK_Budgets_TotalAmount_Positive CHECK (TotalAmount >= 0),
     CONSTRAINT FK_Budgets_Users FOREIGN KEY (UserID) REFERENCES Users(UserID),
     CONSTRAINT UQ_Budgets_UserMonth UNIQUE (UserID, YearMonth),
-    CONSTRAINT CK_Budgets_YearMonth CHECK (YearMonth LIKE '[1-2][0-9][0-9][0-9]-[0-1][0-9]')
+    CONSTRAINT CK_Budgets_YearMonth CHECK (YearMonth LIKE '[1-2][0-9][0-9][0-9]-[0-1][0-9]' AND SUBSTRING(YearMonth, 6, 2) BETWEEN '01' AND '12')
 );
 
 -- BUDGET ENVELOPES
@@ -158,6 +165,7 @@ CREATE TABLE BudgetEnvelopes (
     BudgetID INT NOT NULL,
     CategoryID INT NOT NULL,
     MonthlyLimit DECIMAL(18,2) NOT NULL,
+    CONSTRAINT CK_BudgetEnvelopes_MonthlyLimit_Positive CHECK (MonthlyLimit >= 0),
     CONSTRAINT FK_BudgetEnvelopes_Budgets FOREIGN KEY (BudgetID) REFERENCES Budgets(BudgetID),
     CONSTRAINT FK_BudgetEnvelopes_Categories FOREIGN KEY (CategoryID) REFERENCES Categories(CategoryID),
     CONSTRAINT UQ_BudgetEnvelopes UNIQUE (BudgetID, CategoryID)
@@ -171,6 +179,7 @@ CREATE TABLE BudgetProgress (
     SpentAmount DECIMAL(18,2) NOT NULL,
     RemainingAmount DECIMAL(18,2) NOT NULL,
     LastUpdated DATETIME2 NOT NULL,
+    CONSTRAINT CK_BudgetProgress_NonNegative CHECK (SpentAmount >= 0 AND RemainingAmount >= 0),
     CONSTRAINT FK_BudgetProgress_Budgets FOREIGN KEY (BudgetID) REFERENCES Budgets(BudgetID),
     CONSTRAINT FK_BudgetProgress_Categories FOREIGN KEY (CategoryID) REFERENCES Categories(CategoryID),
     CONSTRAINT UQ_BudgetProgress UNIQUE (BudgetID, CategoryID)
@@ -194,6 +203,8 @@ CREATE TABLE UserPets (
     InactiveDays INT NOT NULL DEFAULT 0,
     PetStatus VARCHAR(30) NOT NULL,
     IsPetSubscribed BIT NOT NULL DEFAULT 0,
+    CONSTRAINT CK_UserPets_Status CHECK (PetStatus IN ('Happy','Normal','Sad','Excited')),
+    CONSTRAINT CK_UserPets_NonNegative CHECK (XP >= 0 AND EcoScore >= 0 AND InactiveDays >= 0),
     CONSTRAINT FK_UserPets_Users FOREIGN KEY (UserID) REFERENCES Users(UserID),
     CONSTRAINT FK_UserPets_Pets FOREIGN KEY (PetID) REFERENCES Pets(PetID)
 );
@@ -262,7 +273,7 @@ CREATE TABLE LeaderboardStats (
     FinancialLiteracyScore INT NOT NULL,
     CONSTRAINT FK_LeaderboardStats_Users FOREIGN KEY (UserID) REFERENCES Users(UserID),
     CONSTRAINT UQ_LeaderboardStats UNIQUE (UserID, YearMonth),
-    CONSTRAINT CK_LeaderboardStats_YearMonth CHECK (YearMonth LIKE '[1-2][0-9][0-9][0-9]-[0-1][0-9]')
+    CONSTRAINT CK_LeaderboardStats_YearMonth CHECK (YearMonth LIKE '[1-2][0-9][0-9][0-9]-[0-1][0-9]' AND SUBSTRING(YearMonth, 6, 2) BETWEEN '01' AND '12')
 );
 
 -- ECO SCORES
@@ -273,7 +284,7 @@ CREATE TABLE EcoScores (
     Score INT NOT NULL,
     CONSTRAINT FK_EcoScores_Users FOREIGN KEY (UserID) REFERENCES Users(UserID),
     CONSTRAINT UQ_EcoScores UNIQUE (UserID, YearMonth),
-    CONSTRAINT CK_EcoScores_YearMonth CHECK (YearMonth LIKE '[1-2][0-9][0-9][0-9]-[0-1][0-9]')
+    CONSTRAINT CK_EcoScores_YearMonth CHECK (YearMonth LIKE '[1-2][0-9][0-9][0-9]-[0-1][0-9]' AND SUBSTRING(YearMonth, 6, 2) BETWEEN '01' AND '12')
 );
 
 -- MERCHANT RULES
@@ -286,9 +297,16 @@ CREATE TABLE MerchantRules (
     CONSTRAINT FK_MerchantRules_Users FOREIGN KEY (UserID) REFERENCES Users(UserID)
 );
 
--- Helpful indexes (optional, but good)
+-- Helper Indexes for performance
 CREATE INDEX IX_Accounts_UserID ON Accounts(UserID);
 CREATE INDEX IX_Transactions_AccountID ON Transactions(AccountID);
 CREATE INDEX IX_Transactions_CategoryID ON Transactions(CategoryID);
 CREATE INDEX IX_Budgets_UserID ON Budgets(UserID);
 CREATE INDEX IX_Income_UserID ON Income(UserID);
+CREATE INDEX IX_Transactions_TransactionDate ON Transactions(TransactionDate);
+CREATE INDEX IX_Transactions_AccountDate ON Transactions(AccountID, TransactionDate DESC);
+
+-- Ensure only one default account per user at a time 
+CREATE UNIQUE INDEX UX_Accounts_OneDefaultPerUser
+ON Accounts(UserID)
+WHERE IsDefault = 1;
