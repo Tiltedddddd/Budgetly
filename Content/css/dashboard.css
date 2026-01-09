@@ -4,7 +4,6 @@
 
 .page-dashboard {
     width: 100%;
-    height: 100%;
 }
 
 /* =========================
@@ -19,64 +18,125 @@
 /* Main grid */
 .dashboard-grid {
     display: grid;
-    grid-template-columns: 260px 1fr 320px;
-    grid-auto-rows: minmax(140px, auto);
+    grid-template-columns: 450px 1fr 360px;
     gap: 20px;
+    padding-right: 10px;
 }
 
+.dashboard-col {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
 /* =========================
    Widget base
 ========================= */
 
 .widget {
-    background: var(--c-surface);
+    background: #a1a1a1; /*Just for dev visability*/
     border-radius: var(--r-sm);
     padding: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     color: var(--c-muted);
     font-size: 14px;
 }
 
-/* =========================
-   Widget placement
-========================= */
-
 /* Left column */
 .widget-pet {
-    grid-column: 1;
-    grid-row: 1;
+    min-height: 160px;
 }
 
 .widget-leaderboard {
-    grid-column: 1;
-    grid-row: 2 / span 2;
+    min-height:500px;
 }
 
 /* Center column */
-.widget-cards {
-    grid-column: 2;
-    grid-row: 1;
-}
 
 .widget-transactions {
-    grid-column: 2;
-    grid-row: 2 / span 2;
+    min-height: 360px;
 }
 
 /* Right column */
 .widget-expenses {
-    grid-column: 3;
-    grid-row: 1;
+    min-height: 230px;
 }
 
 .widget-income {
-    grid-column: 3;
-    grid-row: 2;
+    min-height: 230px;
 }
 
 .widget-promo {
-    grid-column: 3;
-    grid-row: 3;
+    min-height: 175px;
+}
+
+
+
+/* =========================
+   Accounts placement
+========================= */
+
+.widget-accounts {
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.cards-header {
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+}
+
+.cards-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.cards-subtitle {
+    font-size: 13px;
+    color: var(--c-muted);
+    margin: 2px 0 0;
+}
+
+/*Card Carousel Container*/
+.cards-carousel {
+    display: flex;
+    gap: 16px;
+    padding-bottom: 8px;
+}
+
+/* Bank Card */
+.bank-card {
+    background: linear-gradient(135deg, #4a9fd8, #2c7db3);
+    color: #fff;
+    border-radius: 16px;
+    padding: 20px;
+    width: 100%;
+    max-width: 320px;
+    height: 180px;
+
+    display:flex;
+    flex: 0 0 320px;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/*Card content*/
+.bank-card-top {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.bank-card-number {
+    letter-spacing: 2px;
+    font-size: 16px;
+}
+
+.bank-card-footer {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
 }
