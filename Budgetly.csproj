@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
+    <Content Include="Content\css\goalSettingPage.css" />
     <Content Include="Content\css\site.css" />
     <Content Include="Content\images\icons\navAnalytics.svg" />
     <Content Include="Content\images\icons\navDen.svg" />
@@ -85,6 +86,7 @@
     <Content Include="Pages\denPage.aspx" />
     <Content Include="Pages\goalSettingPage.aspx" />
     <Content Include="Pages\homePage.aspx" />
+    <Content Include="Pages\DevLogin.aspx" />
     <Content Include="Pages\settingsPage.aspx" />
     <Content Include="Pages\transactionsPage.aspx" />
     <Content Include="Pages\ViewData.aspx" />
@@ -152,6 +154,13 @@
     </Compile>
     <Compile Include="Pages\homePage.aspx.designer.cs">
       <DependentUpon>homePage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\DevLogin.aspx.cs">
+      <DependentUpon>DevLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\DevLogin.aspx.designer.cs">
+      <DependentUpon>DevLogin.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\settingsPage.aspx.cs">
       <DependentUpon>settingsPage.aspx</DependentUpon>

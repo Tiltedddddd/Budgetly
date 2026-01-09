@@ -101,48 +101,66 @@ VALUES
 
 
 
--- INCOME
+/* --- INCOME FOR JAN 2026 --- */
 INSERT INTO Income (UserID, AccountID, YearMonth, Amount, Source)
 VALUES
-(1,1,'2025-01',3500,'Salary'),
-(2,3,'2025-01',2800,'Salary'),
-(3,4,'2025-01',2200,'Allowance'),
-(4,5,'2025-01',4000,'Salary'),
-(5,6,'2025-01',3000,'Freelance');
+(1, 1, '2026-01', 4200, 'Salary'),
+(2, 3, '2026-01', 3100, 'Salary'),
+(3, 4, '2026-01', 2500, 'Allowance'),
+(4, 5, '2026-01', 4500, 'Salary'),
+(5, 6, '2026-01', 3500, 'Freelance');
 
--- BUDGETS (NO Title)
+/* --- BUDGET HEADERS FOR JAN 2026 --- */
 INSERT INTO Budgets (UserID, YearMonth, TotalAmount)
 VALUES
-(1,'2025-01',2000),
-(2,'2025-01',1500),
-(3,'2025-01',1000),
-(4,'2025-01',2500),
-(5,'2025-01',1800);
+(1, '2026-01', 2800),
+(2, '2026-01', 1800),
+(3, '2026-01', 1200),
+(4, '2026-01', 3000),
+(5, '2026-01', 2000);
 
-DECLARE @B1 INT = (SELECT BudgetID FROM Budgets WHERE UserID=1 AND YearMonth='2025-01');
-DECLARE @B2 INT = (SELECT BudgetID FROM Budgets WHERE UserID=2 AND YearMonth='2025-01');
-DECLARE @B3 INT = (SELECT BudgetID FROM Budgets WHERE UserID=3 AND YearMonth='2025-01');
-DECLARE @B4 INT = (SELECT BudgetID FROM Budgets WHERE UserID=4 AND YearMonth='2025-01');
-DECLARE @B5 INT = (SELECT BudgetID FROM Budgets WHERE UserID=5 AND YearMonth='2025-01');
+/* --- FETCHING IDs FOR NEW ENTRIES --- */
+DECLARE @BJ1 INT = (SELECT BudgetID FROM Budgets WHERE UserID=1 AND YearMonth='2026-01');
+DECLARE @BJ2 INT = (SELECT BudgetID FROM Budgets WHERE UserID=2 AND YearMonth='2026-01');
+DECLARE @BJ3 INT = (SELECT BudgetID FROM Budgets WHERE UserID=3 AND YearMonth='2026-01');
+DECLARE @BJ4 INT = (SELECT BudgetID FROM Budgets WHERE UserID=4 AND YearMonth='2026-01');
+DECLARE @BJ5 INT = (SELECT BudgetID FROM Budgets WHERE UserID=5 AND YearMonth='2026-01');
 
-
--- BUDGET ENVELOPES (BudgetIDs 1..5 on fresh DB)
+/* --- BUDGET ENVELOPES (Goals) --- */
 INSERT INTO BudgetEnvelopes (BudgetID, CategoryID, MonthlyLimit)
 VALUES
-(@B1,2,500),
-(@B1,3,300),
-(@B2,2,200),
-(@B3,4,400),
-(@B4,5,600);
+-- User 1: High Spender
+(@BJ1, 1, 800), -- Groceries
+(@BJ1, 2, 400), -- Transport
+(@BJ1, 3, 200), -- Entertainment
+-- User 2
+(@BJ2, 1, 500),
+(@BJ2, 4, 300), -- Utilities
+-- User 3
+(@BJ3, 2, 250),
+-- User 4
+(@BJ4, 1, 1000),
+(@BJ4, 5, 500), -- Savings
+-- User 5
+(@BJ5, 3, 400);
 
--- BUDGET PROGRESS
+/* --- BUDGET PROGRESS (Actual Spending) --- */
 INSERT INTO BudgetProgress (BudgetID, CategoryID, SpentAmount, RemainingAmount, LastUpdated)
 VALUES
-(@B1,2,120.50,379.50,SYSUTCDATETIME()),
-(@B1,3,45.00,255.00,SYSUTCDATETIME()),
-(@B2,2,80.00,120.00,SYSUTCDATETIME()),
-(@B3,4,150.00,250.00,SYSUTCDATETIME()),
-(@B4,5,200.00,400.00,SYSUTCDATETIME());
+-- User 1 Progress
+(@BJ1, 1, 350.75, 449.25, SYSUTCDATETIME()),
+(@BJ1, 2, 120.00, 280.00, SYSUTCDATETIME()),
+(@BJ1, 3, 190.00, 10.00,  SYSUTCDATETIME()),
+-- User 2 Progress
+(@BJ2, 1, 410.20, 89.80,  SYSUTCDATETIME()),
+(@BJ2, 4, 280.00, 20.00,  SYSUTCDATETIME()),
+-- User 3 Progress
+(@BJ3, 2, 50.00,  200.00, SYSUTCDATETIME()),
+-- User 4 Progress
+(@BJ4, 1, 600.00, 400.00, SYSUTCDATETIME()),
+(@BJ4, 5, 0.00,   500.00, SYSUTCDATETIME()),
+-- User 5 Progress
+(@BJ5, 3, 380.50, 19.50,  SYSUTCDATETIME());
 
 -- PETS
 INSERT INTO Pets (PetName, Description)

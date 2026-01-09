@@ -1,4 +1,4 @@
-﻿/* =========================
+﻿﻿ /* =========================
    Global
 ========================= */
 *,
@@ -90,11 +90,9 @@ body {
     background: var(--c-app-bg);
     border-radius: var(--r-md);
     padding: 12px 10px;
-
     display: grid;
     grid-template-rows: auto 1fr auto;
     gap: 10px;
-
     overflow: hidden;
 }
 
@@ -108,7 +106,6 @@ body {
     overflow-x: hidden;
     padding-right: 6px;
     scrollbar-width: thin;
-
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -159,7 +156,7 @@ body {
 
 .nav-item:hover .nav-icon {
     background: #79C1FF;
-    transform: scale(1.03); 
+    transform: scale(1.03);
 }
 
 .nav-item:focus-visible {
@@ -177,7 +174,6 @@ body {
     font-size: 20px;
     flex: 0 0 auto;
     align-self: center;
-
     transition: background-color var(--t-fast), transform var(--t-fast);
 }
 
@@ -211,10 +207,8 @@ body {
     transform: translateX(-6px);
     pointer-events: none;
     white-space: nowrap;
-
     width: 0;
     overflow: hidden;
-
     transition: opacity var(--t-snap), transform var(--t-snap), width var(--t-snap);
 }
 
@@ -222,7 +216,6 @@ body {
     opacity: 1;
     transform: translateX(0);
     pointer-events: auto;
-
     width: auto;
 }
 
@@ -239,7 +232,7 @@ body {
     opacity: 0;
     pointer-events: none;
     transition: opacity var(--t-fast);
-    border-radius: var(--r-lg); 
+    border-radius: var(--r-lg);
     z-index: var(--z-overlay);
 }
 
@@ -284,7 +277,7 @@ body {
 }
 
 .welcome-label,
-.welcome-name{
+.welcome-name {
     font-size: 14px;
     color: var(--c-muted);
     line-height: 1.2;
@@ -318,7 +311,7 @@ body {
 
 .content-placeholder {
     flex: 1;
-    background: var(--c-surface); 
+    background: var(--c-surface);
     border-radius: var(--r-sm);
     padding: 18px;
     display: flex;
