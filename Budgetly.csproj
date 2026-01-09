@@ -90,6 +90,7 @@
     <Content Include="Pages\transactionsPage.aspx" />
     <Content Include="Pages\ViewData.aspx" />
     <Content Include="Pages\walletsPage.aspx" />
+    <Content Include="Scripts\dashboardPage\dashboard.js" />
     <Content Include="Scripts\sidebar.js" />
     <Content Include="testpage.aspx" />
     <Content Include="Web.config" />
