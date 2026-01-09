@@ -1,0 +1,82 @@
+﻿/* =========================
+   Dashboard Layout
+========================= */
+
+.page-dashboard {
+    width: 100%;
+    height: 100%;
+}
+
+/* =========================
+   Changes from masterpage
+========================= */
+/* Hide master page title on dashboard */
+.main-content-container .page-title {
+    display: none;
+}
+
+
+/* Main grid */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 260px 1fr 320px;
+    grid-auto-rows: minmax(140px, auto);
+    gap: 20px;
+}
+
+/* =========================
+   Widget base
+========================= */
+
+.widget {
+    background: var(--c-surface);
+    border-radius: var(--r-sm);
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--c-muted);
+    font-size: 14px;
+}
+
+/* =========================
+   Widget placement
+========================= */
+
+/* Left column */
+.widget-pet {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.widget-leaderboard {
+    grid-column: 1;
+    grid-row: 2 / span 2;
+}
+
+/* Center column */
+.widget-cards {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.widget-transactions {
+    grid-column: 2;
+    grid-row: 2 / span 2;
+}
+
+/* Right column */
+.widget-expenses {
+    grid-column: 3;
+    grid-row: 1;
+}
+
+.widget-income {
+    grid-column: 3;
+    grid-row: 2;
+}
+
+.widget-promo {
+    grid-column: 3;
+    grid-row: 3;
+}

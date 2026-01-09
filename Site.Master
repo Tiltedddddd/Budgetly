@@ -41,7 +41,7 @@
 
                         <nav class="sidebar-nav" aria-label="Primary">
 
-                            <a id="navHome" class="nav-item" href="~/Pages/homePage.aspx" runat="server">
+                            <a id="navDashboard" class="nav-item" href="~/Pages/dashboard.aspx" runat="server">
                                 <span class="nav-icon">
                                     <img runat="server" src="~/Content/images/icons/navHome.svg" alt="" aria-hidden="true" />
                                 </span>
