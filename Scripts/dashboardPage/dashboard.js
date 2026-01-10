@@ -3,16 +3,16 @@ const DEV_STATIC_TRANSACTIONS = true;
 
 document.addEventListener("DOMContentLoaded", () => {
     syncCardRoles();
-    updateActiveAccount();
 
-    console.log("before pagination");
     initPagination();
     syncPagination();
-    console.log("after pagination");
+
+    updateActiveAccount();
+
 
     document
         .querySelector(".cards-stack")
-        .addEventListener("click", rotateCards);
+        ?.addEventListener("click", rotateCards);
 });
 
 
@@ -68,7 +68,8 @@ function syncPagination() {
 }
 
 
-//STUFF THAT UPDATE BASED ON WHICH ACCOUNT IS SELECTED
+//DYNAMIC WIDGET UPDATES FOR THINGS THAT SHOULD CHANGE WITH ACCOUNTS
+
 let activeAccountId = null;
 
 function updateActiveAccount() {
@@ -82,51 +83,82 @@ function updateActiveAccount() {
 
     // Hook analytics refresh here
     updateAnalytics(activeAccountId);
-    updateTransactions(activeAccountId);
+    refreshTransactions(activeAccountId);
     updateIncome(activeAccountId)
 }
 
-function updateTransactions(accountId) {
-    if (DEV_STATIC_TRANSACTIONS) {
-        console.log("Skipping JS transaction render (static UI mode)");
-        return;
-    }
-    const container = document.querySelector(".widget-transactions");
-    const fakeTransactions = {
-        1: [
-            { label: "Food", amount: 20 },
-            { label: "Transport", amount: 5 },
-            { label: "Shopping", amount: 40 }
-        ],
-        2: [
-            { label: "Food", amount: 10 },
-            { label: "Bills", amount: 30 }
-        ],
-        3: [
-            { label: "Shopping", amount: 15 }
-        ]
-    };
+const list = document.getElementById("transactionsList");
 
-    const transactions = fakeTransactions[accountId] || [];
+function renderTransactions(data) {
+    list.innerHTML = "";
 
+    data.forEach(tx => {
+        const isIncome = tx.amount > 0;
 
-    if (transactions.length === 0) {
-        container.innerHTML = `
-            <h4>Transactions</h4>
-            <p>No transactions</p>
+        const li = document.createElement("li");
+        li.className = "transaction-item";
+
+        li.innerHTML = `
+            <img src="${tx.icon}" class="tx-icon" />
+            <div class="tx-info">
+                <span class="tx-merchant">${tx.merchant}</span>
+                <span class="tx-category">${tx.category}</span>
+            </div>
+            <span class="tx-amount ${isIncome ? "positive" : "negative"}">
+                ${isIncome ? "+" : "-"}$${Math.abs(tx.amount).toFixed(2)}
+            </span>
         `;
+
+        list.appendChild(li);
+    });
+}
+
+const transactions = [
+    {
+        merchant: "Grab Transport co.",
+        category: "Transportation",
+        amount: -10.00,
+        icon: "../Content/images/icons/grabLogo.png"
+    },
+    {
+        merchant: "PayNow - John Pork",
+        category: "Payment",
+        amount: 5.00,
+        icon: "../Content/images/icons/paynowLogo.png"
+    },
+    {
+        merchant: "PayNow - Javier Jesus",
+        category: "Payment",
+        amount: 50.00,
+        icon: "../Content/images/icons/paynowLogo.png"
+    },
+    {
+        merchant: "PayNow - Mother",
+        category: "Payment",
+        amount: 500.00,
+        icon: "../Content/images/icons/paynowLogo.png"
+    },
+    {
+        merchant: "Grab Transport co.",
+        category: "F&B",
+        amount: -25.00,
+        icon: "../Content/images/icons/grabLogo.png"
+    }
+];
+
+function refreshTransactions(accountId) {
+    if (DEV_STATIC_TRANSACTIONS) {
+        renderTransactions(transactions);
         return;
     }
 
-    const items = transactions
-        .map(t => `<li>${t.label} : $${t.amount}</li>`)
-        .join("");
-
-    container.innerHTML = `
-        <h4>Transactions</h4>
-        <ul>${items}</ul>
-    `;
+    // later (real DB)
+    // fetch(`/api/transactions?accountId=${accountId}`)
+    //   .then(res => res.json())
+    //   .then(renderTransactions);
 }
+
+
 
 
 function updateAnalytics(accountId) {

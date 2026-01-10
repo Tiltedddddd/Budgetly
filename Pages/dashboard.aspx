@@ -106,7 +106,8 @@
                         <a class="transactions-link">See All</a>
                     </div>
 
-                    <ul class="transactions-list">
+                    <ul class="transactions-list" id="transactionsList">
+                        <!--
                         <li class="transaction-item expense">
                             <img src="../Content/images/icons/grabLogo.png" class="tx-icon" />
                             <div class="tx-info">
@@ -151,6 +152,7 @@
                             </div>
                             <span class="tx-amount positive">+$5.00</span>
                         </li>
+                        -->
                     </ul>
 
 
