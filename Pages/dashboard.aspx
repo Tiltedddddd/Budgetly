@@ -116,42 +116,6 @@
                             </div>
                             <span class="tx-amount negative">-$10.00</span>
                         </li>
-
-                        <li class="transaction-item income">
-                            <img src="../Content/images/icons/paynowLogo.png" class="tx-icon" />
-                            <div class="tx-info">
-                                <span class="tx-merchant">PayNow - John Pork</span>
-                                <span class="tx-category">Payment</span>
-                            </div>
-                            <span class="tx-amount positive">+$5.00</span>
-                        </li>
-
-                        <li class="transaction-item income">
-                            <img src="../Content/images/icons/paynowLogo.png" class="tx-icon" />
-                            <div class="tx-info">
-                                <span class="tx-merchant">PayNow - John Pork</span>
-                                <span class="tx-category">Payment</span>
-                            </div>
-                            <span class="tx-amount positive">+$5.00</span>
-                        </li>
-
-                        <li class="transaction-item income">
-                            <img src="../Content/images/icons/paynowLogo.png" class="tx-icon" />
-                            <div class="tx-info">
-                                <span class="tx-merchant">PayNow - John Pork</span>
-                                <span class="tx-category">Payment</span>
-                            </div>
-                            <span class="tx-amount positive">+$5.00</span>
-                        </li>
-
-                        <li class="transaction-item income">
-                            <img src="../Content/images/icons/paynowLogo.png" class="tx-icon" />
-                            <div class="tx-info">
-                                <span class="tx-merchant">PayNow - John Pork</span>
-                                <span class="tx-category">Payment</span>
-                            </div>
-                            <span class="tx-amount positive">+$5.00</span>
-                        </li>
                         -->
                     </ul>
 

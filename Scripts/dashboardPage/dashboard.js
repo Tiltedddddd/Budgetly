@@ -1,5 +1,4 @@
 let currentIndex = 0;
-const DEV_STATIC_TRANSACTIONS = true;
 
 document.addEventListener("DOMContentLoaded", () => {
     syncCardRoles();
@@ -87,10 +86,21 @@ function updateActiveAccount() {
     updateIncome(activeAccountId)
 }
 
-const list = document.getElementById("transactionsList");
 
 function renderTransactions(data) {
+    const list = document.getElementById("transactionsList");
+    if (!list) return;
+
     list.innerHTML = "";
+
+    if (data.length === 0) {
+        list.innerHTML = `
+            <li class="transaction-item empty">
+                <span>No transactions for this account</span>
+            </li>
+        `;
+        return;
+    }
 
     data.forEach(tx => {
         const isIncome = tx.amount > 0;
@@ -113,44 +123,69 @@ function renderTransactions(data) {
     });
 }
 
-const transactions = [
-    {
-        merchant: "Grab Transport co.",
-        category: "Transportation",
-        amount: -10.00,
-        icon: "../Content/images/icons/grabLogo.png"
-    },
-    {
-        merchant: "PayNow - John Pork",
-        category: "Payment",
-        amount: 5.00,
-        icon: "../Content/images/icons/paynowLogo.png"
-    },
-    {
-        merchant: "PayNow - Javier Jesus",
-        category: "Payment",
-        amount: 50.00,
-        icon: "../Content/images/icons/paynowLogo.png"
-    },
-    {
-        merchant: "PayNow - Mother",
-        category: "Payment",
-        amount: 500.00,
-        icon: "../Content/images/icons/paynowLogo.png"
-    },
-    {
-        merchant: "Grab Transport co.",
-        category: "F&B",
-        amount: -25.00,
-        icon: "../Content/images/icons/grabLogo.png"
-    }
-];
 
+const TRANSACTIONS_BY_ACCOUNT = {
+    1: [
+        {
+            merchant: "Grab Transport",
+            category: "Transportation",
+            amount: -10,
+            icon: "../Content/images/icons/grabLogo.png"
+        }
+    ],
+    2: [
+        {
+            merchant: "Grab Transport co.",
+            category: "Transportation",
+            amount: -10.00,
+            icon: "../Content/images/icons/grabLogo.png"
+        },
+        {
+            merchant: "PayNow - John Pork",
+            category: "Payment",
+            amount: 5.00,
+            icon: "../Content/images/icons/paynowLogo.png"
+        },
+    ],
+    3: [
+        {
+            merchant: "Grab Transport co.",
+            category: "Transportation",
+            amount: -10.00,
+            icon: "../Content/images/icons/grabLogo.png"
+        },
+        {
+            merchant: "PayNow - John Pork",
+            category: "Payment",
+            amount: 5.00,
+            icon: "../Content/images/icons/paynowLogo.png"
+        },
+        {
+            merchant: "PayNow - Javier Jesus",
+            category: "Payment",
+            amount: 50.00,
+            icon: "../Content/images/icons/paynowLogo.png"
+        },
+        {
+            merchant: "PayNow - Mother",
+            category: "Payment",
+            amount: 500.00,
+            icon: "../Content/images/icons/paynowLogo.png"
+        },
+        {
+            merchant: "Grab Transport co.",
+            category: "F&B",
+            amount: -25.00,
+            icon: "../Content/images/icons/grabLogo.png"
+        }
+    ]
+};
+
+
+//Touch this one when swapping to database
 function refreshTransactions(accountId) {
-    if (DEV_STATIC_TRANSACTIONS) {
-        renderTransactions(transactions);
-        return;
-    }
+    const data = TRANSACTIONS_BY_ACCOUNT[accountId] || [];
+    renderTransactions(data);
 
     // later (real DB)
     // fetch(`/api/transactions?accountId=${accountId}`)
