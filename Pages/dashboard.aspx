@@ -37,7 +37,7 @@
                     <!--Card carousells-->
                     <div class="cards-stack">
 
-                        <div class="bank-card is-active card-blue" data-account-id ="1">
+                        <div class="bank-card is-active card-blue" data-account-id="1">
 
                             <div class="bank-card-top">
                                 <span class="bank-name">Trust</span>
@@ -47,6 +47,8 @@
                             <div class="bank-card-number">
                                 •••• •••• •••• 9494
                             </div>
+
+                            <img src="../Content/images/dashboard/card-chip.png" alt="" class="card-chip" />
 
                             <div class="bank-card-balance">
                                 <span class="card-balance-label">Balance</span>
@@ -64,6 +66,8 @@
                                 •••• •••• •••• $$$$
                             </div>
 
+                            <img src="../Content/images/dashboard/card-chip.png" alt="" class="card-chip" />
+
                             <div class="bank-card-balance">
                                 <span class="card-balance-label">Spent</span>
                                 <span class="card-balance-value">$900.00</span>
@@ -80,6 +84,8 @@
                                 •••• •••• •••• 1212
                             </div>
 
+                            <img src="../Content/images/dashboard/card-chip.png" alt="" class="card-chip" />
+
                             <div class="bank-card-balance">
                                 <span class="card-balance-label">Balance</span>
                                 <span class="card-balance-value">$20.19</span>
@@ -88,11 +94,66 @@
 
                     </div>
 
+                    <div class="card-pagination"></div>
+
                 </section>
 
                 <!-- Widget 5: Recent transactions -->
                 <section class="widget widget-transactions">
-                    Transactions widget
+
+                    <div class="transactions-header">
+                        <h4>Recent Transactions</h4>
+                        <a class="transactions-link">See All</a>
+                    </div>
+
+                    <ul class="transactions-list">
+                        <li class="transaction-item expense">
+                            <img src="../Content/images/icons/grabLogo.png" class="tx-icon" />
+                            <div class="tx-info">
+                                <span class="tx-merchant">Grab Transport co.</span>
+                                <span class="tx-category">Transportation</span>
+                            </div>
+                            <span class="tx-amount negative">-$10.00</span>
+                        </li>
+
+                        <li class="transaction-item income">
+                            <img src="../Content/images/icons/paynowLogo.png" class="tx-icon" />
+                            <div class="tx-info">
+                                <span class="tx-merchant">PayNow - John Pork</span>
+                                <span class="tx-category">Payment</span>
+                            </div>
+                            <span class="tx-amount positive">+$5.00</span>
+                        </li>
+
+                        <li class="transaction-item income">
+                            <img src="../Content/images/icons/paynowLogo.png" class="tx-icon" />
+                            <div class="tx-info">
+                                <span class="tx-merchant">PayNow - John Pork</span>
+                                <span class="tx-category">Payment</span>
+                            </div>
+                            <span class="tx-amount positive">+$5.00</span>
+                        </li>
+
+                        <li class="transaction-item income">
+                            <img src="../Content/images/icons/paynowLogo.png" class="tx-icon" />
+                            <div class="tx-info">
+                                <span class="tx-merchant">PayNow - John Pork</span>
+                                <span class="tx-category">Payment</span>
+                            </div>
+                            <span class="tx-amount positive">+$5.00</span>
+                        </li>
+
+                        <li class="transaction-item income">
+                            <img src="../Content/images/icons/paynowLogo.png" class="tx-icon" />
+                            <div class="tx-info">
+                                <span class="tx-merchant">PayNow - John Pork</span>
+                                <span class="tx-category">Payment</span>
+                            </div>
+                            <span class="tx-amount positive">+$5.00</span>
+                        </li>
+                    </ul>
+
+
                 </section>
 
             </div>
@@ -102,13 +163,14 @@
                 <!-- Widget 3: Expenses summary -->
                 <section class="widget widget-expenses">
                     Expenses widget
-                    <canvas id="expensesChart" height="160"></canvas>
+                    <canvas id="expensesChart" height="130"></canvas>
                 </section>
 
 
                 <!-- Widget 6: Income summary -->
                 <section class="widget widget-income">
-                    Income widget
+                    <h4>Income</h4>
+                    <canvas id="incomeChart" height="130"></canvas>
                 </section>
 
                 <!-- Widget 7: Promo / AI -->

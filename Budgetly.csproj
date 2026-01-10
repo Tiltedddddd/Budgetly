@@ -70,6 +70,8 @@
     <Content Include=".gitignore" />
     <Content Include="Content\css\dashboard.css" />
     <Content Include="Content\css\site.css" />
+    <Content Include="Content\images\dashboard\card-chip.png" />
+    <Content Include="Content\images\icons\grabLogo.png" />
     <Content Include="Content\images\icons\navAnalytics.svg" />
     <Content Include="Content\images\icons\navDen.svg" />
     <Content Include="Content\images\icons\navGoalSetting.svg" />
@@ -79,6 +81,7 @@
     <Content Include="Content\images\icons\navToggle2.svg" />
     <Content Include="Content\images\icons\navTransactions.svg" />
     <Content Include="Content\images\icons\navWallets.svg" />
+    <Content Include="Content\images\icons\paynowLogo.png" />
     <Content Include="Database\schema.sql" />
     <Content Include="Database\seed.sql" />
     <Content Include="Pages\analyticsPage.aspx" />

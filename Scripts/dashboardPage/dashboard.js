@@ -1,13 +1,20 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const stack = document.querySelector(".cards-stack");
+let currentIndex = 0;
+const DEV_STATIC_TRANSACTIONS = true;
 
+document.addEventListener("DOMContentLoaded", () => {
     syncCardRoles();
     updateActiveAccount();
+
+    console.log("before pagination");
+    initPagination();
+    syncPagination();
+    console.log("after pagination");
 
     document
         .querySelector(".cards-stack")
         .addEventListener("click", rotateCards);
 });
+
 
 function rotateCards() {
     const stack = document.querySelector(".cards-stack");
@@ -16,7 +23,11 @@ function rotateCards() {
     if (cards.length < 2) return;
 
     stack.appendChild(cards[0]);
+
+    currentIndex = (currentIndex + 1) % cards.length;
+
     syncCardRoles();
+    syncPagination();
     updateActiveAccount();
 }
 
@@ -27,7 +38,35 @@ function syncCardRoles() {
     if (cards[0]) cards[0].classList.add("is-active");
     if (cards[1]) cards[1].classList.add("is-back");
     if (cards[2]) cards[2].classList.add("is-back-2");
+
 }
+
+//Pagination dot stuff
+function initPagination() {
+    const stack = document.querySelector(".cards-stack");
+    const pagination = document.querySelector(".card-pagination");
+    if (!stack || !pagination) return;
+
+    const cards = stack.querySelectorAll(".bank-card");
+
+    pagination.innerHTML = "";
+
+    cards.forEach(() => {
+        const dot = document.createElement("span");
+        dot.classList.add("dot");
+        pagination.appendChild(dot);
+    });
+}
+
+function syncPagination() {
+    const dots = document.querySelectorAll(".card-pagination .dot");
+    dots.forEach(d => d.classList.remove("is-active"));
+
+    if (dots[currentIndex]) {
+        dots[currentIndex].classList.add("is-active");
+    }
+}
+
 
 //STUFF THAT UPDATE BASED ON WHICH ACCOUNT IS SELECTED
 let activeAccountId = null;
@@ -44,20 +83,50 @@ function updateActiveAccount() {
     // Hook analytics refresh here
     updateAnalytics(activeAccountId);
     updateTransactions(activeAccountId);
+    updateIncome(activeAccountId)
 }
 
 function updateTransactions(accountId) {
-    const el = document.querySelector(".widget-transactions");
-    el.innerHTML = `
-    <h4>Transactions</h4>
-    <ul>
-      <li>Food – $20</li>
-      <li>Transport – $5</li>
-      <li>Shopping – $40</li>
-    </ul>
-  `;
-}
+    if (DEV_STATIC_TRANSACTIONS) {
+        console.log("Skipping JS transaction render (static UI mode)");
+        return;
+    }
+    const container = document.querySelector(".widget-transactions");
+    const fakeTransactions = {
+        1: [
+            { label: "Food", amount: 20 },
+            { label: "Transport", amount: 5 },
+            { label: "Shopping", amount: 40 }
+        ],
+        2: [
+            { label: "Food", amount: 10 },
+            { label: "Bills", amount: 30 }
+        ],
+        3: [
+            { label: "Shopping", amount: 15 }
+        ]
+    };
 
+    const transactions = fakeTransactions[accountId] || [];
+
+
+    if (transactions.length === 0) {
+        container.innerHTML = `
+            <h4>Transactions</h4>
+            <p>No transactions</p>
+        `;
+        return;
+    }
+
+    const items = transactions
+        .map(t => `<li>${t.label} : $${t.amount}</li>`)
+        .join("");
+
+    container.innerHTML = `
+        <h4>Transactions</h4>
+        <ul>${items}</ul>
+    `;
+}
 
 
 function updateAnalytics(accountId) {
@@ -93,9 +162,38 @@ function renderChart(data) {
     });
 }
 
+let incomeChartInstance = null;
+
 function updateIncome(accountId) {
-    document.querySelector(".widget-income").innerHTML = `
-    <h4>Income</h4>
-    <p>$1,200 this month</p>
-  `;
+    const fakeIncomeData = {
+        1: [800, 300, 100],
+        2: [500, 200],
+        3: [1200]
+    };
+    const data = fakeIncomeData[accountId] || [];
+
+    const ctx = document.getElementById("incomeChart");
+    if (!ctx) return;
+
+    if (incomeChartInstance) {
+        incomeChartInstance.destroy();
+    }
+
+    incomeChartInstance = new Chart(ctx, {
+        type: "bar",
+        data: {
+            labels: data.map((_, i) => `Source ${i + 1}`),
+            datasets: [{
+                label: "Income",
+                data,
+                backgroundColor: "#4ade80"
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { display: false }
+            }
+        }
+    });
 }
