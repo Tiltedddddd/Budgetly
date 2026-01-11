@@ -86,11 +86,10 @@
     min-height: 230px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
+    margin-bottom: 10px;
 }
 
-.widget-promo {
-    min-height: 215px;
-}
+
 
 /* ===================================================================================================================================
    ACCOUNTS WIDGETTTT
@@ -261,7 +260,6 @@
 }
 
 
-
 .card-blue {
     --card-color-start: #4a9fd8;
     --card-color-end: #2c7db3;
@@ -355,6 +353,67 @@
 
 .tx-amount.positive {
     color: #22c55e;
+}
+
+/*PROMO WIDGET*/
+.widget-promo {
+    position: relative;
+    height: 225px;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    background-image: url("../../Content/images/dashboard/promoWidgetBackground.png");
+    background-size: cover;
+    background-position: center right;
+    background-repeat: no-repeat;
+    color: #fff;
+}
+
+.promo-overlay {
+    position: absolute;
+    border-radius: var(--r-sm);
+    inset: 0;
+    background: linear-gradient( 90deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.55) 45%, rgba(0,0,0,0.25) 100% );
+}
+
+.promo-content {
+    position: relative;
+    max-width: 70%;
+    text-align: center;
+}
+
+.promo-content h2 {
+    margin-top:0;
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 10px;
+}
+
+.promo-content p {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #e5e7eb;
+    margin-bottom: 18px;
+}
+
+.promo-btn {
+    border: none;
+    border-radius: 5px;
+    padding: 10px 22px;
+    font-weight: 600;
+    cursor: pointer;
+    background: linear-gradient(135deg, #ede9fe, #c7d2fe);
+    color: #111827;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.promo-btn:hover {
+    background-color: #413b93;
+    color: rgba(0, 0, 0, 0.25);
 }
 
 

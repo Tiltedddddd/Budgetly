@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     updateActiveAccount();
 
-
     document
         .querySelector(".cards-stack")
         ?.addEventListener("click", rotateCards);
@@ -75,7 +74,7 @@ function updateActiveAccount() {
     const activeCard = document.querySelector(".bank-card.is-active");
     if (!activeCard) return;
 
-    activeAccountId = activeCard.dataset.accountId;
+    activeAccountId = Number(activeCard.dataset.accountId);
 
     // TEMP debug
     console.log("Active account:", activeAccountId);
@@ -86,7 +85,7 @@ function updateActiveAccount() {
     updateIncome(activeAccountId)
 }
 
-
+//TRANSACTIONS
 function renderTransactions(data) {
     const list = document.getElementById("transactionsList");
     if (!list) return;
@@ -124,7 +123,7 @@ function renderTransactions(data) {
 }
 
 
-const TRANSACTIONS_BY_ACCOUNT = {
+/*const TRANSACTIONS_BY_ACCOUNT = {
     1: [
         {
             merchant: "Grab Transport",
@@ -180,87 +179,103 @@ const TRANSACTIONS_BY_ACCOUNT = {
         }
     ]
 };
+*/
+
 
 
 //Touch this one when swapping to database
 function refreshTransactions(accountId) {
-    const data = TRANSACTIONS_BY_ACCOUNT[accountId] || [];
+    /*const data = TRANSACTIONS_BY_ACCOUNT[accountId] || [];
     renderTransactions(data);
+    */
 
-    // later (real DB)
-    // fetch(`/api/transactions?accountId=${accountId}`)
-    //   .then(res => res.json())
-    //   .then(renderTransactions);
+    fetch(`/api/transactions?accountId=${accountId}`)
+        .then(res => {
+            if (!res.ok) throw new Error("Failed to load transactions");
+            return res.json();
+        })
+        .then(renderTransactions)
+        .catch(err => {
+            console.error(err);
+            renderTransactions([]);
+        });
+
+
 }
 
-
-
+//CHARTS 
 
 function updateAnalytics(accountId) {
     console.log("Fetching analytics for", accountId);
 
+    fetch(`/api/expenses/summary?accountId=${accountId}`)
+        .then(res => res.json())
+        .then(data => {
+            renderChart(
+                data.map(d => d.label),
+                data.map(d => d.value)
+            );
+        });
+
+
+    /*
     const fakeData = {
         1: [120, 80, 150, 90],
         2: [60, 40, 30, 20],
         3: [300, 120, 60, 10]
     };
-
-    renderChart(fakeData[accountId]);
+    */
 }
 
 let chartInstance = null;
 
-function renderChart(data) {
+function renderChart(labels, values) {
     const ctx = document.getElementById("expensesChart");
+    if (!ctx) return;
 
-    if (chartInstance) {
-        chartInstance.destroy();
-    }
+    chartInstance?.destroy();
 
     chartInstance = new Chart(ctx, {
         type: "bar",
         data: {
-            labels: ["Food", "Transport", "Shopping", "Bills"],
+            labels,
             datasets: [{
-                data,
+                data: values,
                 backgroundColor: "#60a5fa"
             }]
         }
     });
 }
 
+
 let incomeChartInstance = null;
 
 function updateIncome(accountId) {
+    /*
     const fakeIncomeData = {
         1: [800, 300, 100],
         2: [500, 200],
         3: [1200]
     };
-    const data = fakeIncomeData[accountId] || [];
+    */
 
-    const ctx = document.getElementById("incomeChart");
-    if (!ctx) return;
-
-    if (incomeChartInstance) {
-        incomeChartInstance.destroy();
-    }
-
-    incomeChartInstance = new Chart(ctx, {
-        type: "bar",
-        data: {
-            labels: data.map((_, i) => `Source ${i + 1}`),
-            datasets: [{
-                label: "Income",
-                data,
-                backgroundColor: "#4ade80"
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: { display: false }
-            }
-        }
-    });
+    fetch(`/api/income/summary?accountId=${accountId}`)
+        .then(res => res.json())
+        .then(data => {
+            incomeChartInstance?.destroy();
+            incomeChartInstance = new Chart(
+                document.getElementById("incomeChart"),
+                {
+                    type: "bar",
+                    data: {
+                        labels: data.map(d => d.label),
+                        datasets: [{
+                            data: data.map(d => d.value),
+                            backgroundColor: "#4ade80"
+                        }]
+                    },
+                    options: { plugins: { legend: { display: false } } }
+                }
+            );
+        });
 }

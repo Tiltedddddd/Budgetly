@@ -92,6 +92,7 @@
                             </div>
                         </div>
 
+
                     </div>
 
                     <div class="card-pagination"></div>
@@ -141,7 +142,15 @@
 
                 <!-- Widget 7: Promo / AI -->
                 <section class="widget widget-promo">
-                    Promo widget
+                    <div class="promo-overlay"></div>
+
+                    <div class="promo-content">
+                        <h2>Start Investing Early.<br>
+                            Power Your Life</h2>
+                        <p>You could have saved 18% this month! Try putting $50 towards investments.</p>
+
+                        <button class="promo-btn">Budgetly AI</button>
+                    </div>
                 </section>
 
             </div>

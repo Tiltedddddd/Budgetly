@@ -39,6 +39,7 @@ INSERT INTO Accounts (UserID, AccountName, AccountType, Balance, IsGmailSyncEnab
 VALUES
 (1,'DBS Savings','Savings',2500,1,1),
 (1,'OCBC Card','Credit',-320,1,0),
+(1,'Trust Travel','Credit',-320,1,0),
 (2,'UOB Savings','Savings',1800,0,1),
 (3,'Cash Wallet','Cash',200,0,1),
 (4,'POSB Savings','Savings',3200,1,1),
@@ -57,22 +58,30 @@ VALUES
 -- CATEGORIES (IDs will be 1..10 in this order)
 INSERT INTO Categories (CategoryName, EcoWeight, IsEssential, IconPath)
 VALUES
-('Housing',0.95,1,'/icons/housing.png'),              -- 1
-('Food',0.80,1,'/icons/food.png'),                    -- 2
-('Transportation',0.75,1,'/icons/transport.png'),     -- 3
-('Utilities',0.90,1,'/icons/utilities.png'),          -- 4
-('Healthcare',0.90,1,'/icons/healthcare.png'),        -- 5
-('Education',0.95,1,'/icons/education.png'),          -- 6
-('Shopping',0.40,0,'/icons/shopping.png'),            -- 7
-('Entertainment',0.30,0,'/icons/entertainment.png'),  -- 8
-('Savings & Investments',1.00,1,'/icons/savings.png'),-- 9
-('Miscellaneous',0.50,0,'/icons/misc.png');           -- 10
+('Housing',0.95,1,'/icons/housing.png'),              -- category 1 no img yet
+('Food',0.80,1,'/Content/images/icons/foodIcon.png'),         -- 2
+('Transportation',0.75,1,'/Content/images/icons/transportIcon.png'),     -- category 3
+('Utilities',0.90,1,'/Content/images/icons/utilitiesIcon.png'),          -- category 4
+('Healthcare',0.90,1,'/Content/images/icons/healthcareIcon.png'),         -- category 5
+('Education',0.95,1,'/icons/education.png'),          -- 6 no img yet
+('Shopping',0.40,0,'/Content/images/icons/shoppingIcon.png'),            -- category 7
+('Entertainment',0.30,0,'/icons/entertainment.png'),  -- category 8 no img yet
+('Savings & Investments',1.00,1,'/icons/savings.png'),-- category 9 no img yet
+('Miscellaneous',0.50,0,'/icons/misc.png');           -- category 10 no img yet
+
 
 -- TRANSACTIONS (NO UserID; must use MANUAL/GMAIL and INCOME/EXPENSE)
 INSERT INTO Transactions (AccountID, CategoryID, Amount, TransactionType, TransactionDate, Merchant, Description, Source)
 VALUES
 (1,2,120.50,'EXPENSE',SYSUTCDATETIME(),'NTUC','Weekly groceries','MANUAL'),
+(1,3,12.00,'EXPENSE',SYSUTCDATETIME(),'Grab','Ride','MANUAL'),
+(1,7,50.00,'EXPENSE',SYSUTCDATETIME(),'Shopee','Online purchase','GMAIL'),
+(1,3,12.00,'EXPENSE',SYSUTCDATETIME(),'Gojek','Ride','MANUAL'),
+(1,7,50.00,'EXPENSE',SYSUTCDATETIME(),'Lazada','Online purchase','GMAIL'),
+(1,3,12.00,'EXPENSE',SYSUTCDATETIME(),'TADA','Ride','MANUAL'),
+(1,7,50.00,'EXPENSE',SYSUTCDATETIME(),'Taobao','Online purchase','GMAIL'),
 (2,2,45.00,'EXPENSE',SYSUTCDATETIME(),'McDonalds','Lunch','GMAIL'),
+(2,5,5.00,'EXPENSE',SYSUTCDATETIME(),'OneCare','Medical Certificate','GMAIL'),
 (3,3,80.00,'EXPENSE',SYSUTCDATETIME(),'Grab','Ride','MANUAL'),
 (4,7,150.00,'EXPENSE',SYSUTCDATETIME(),'Shopee','Online shopping','GMAIL'),
 (5,4,200.00,'EXPENSE',SYSUTCDATETIME(),'SP Group','Electricity bill','MANUAL'),
