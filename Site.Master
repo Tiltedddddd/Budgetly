@@ -21,12 +21,18 @@
             <header class="topbar">
                 <div class="topbar-left">
                     <div class="avatar" aria-hidden="true"></div>
+                        <asp:DropDownList ID="ddlUsers"
+                        runat="server"
+                        AutoPostBack="true"
+                        OnSelectedIndexChanged="ddlUsers_SelectedIndexChanged" />
                     <div class="welcome">
                         <span class="welcome-label">Welcome,</span>
-                        <span class="welcome-name">Darren</span>
+                        <span id="welcomeuser" class="welcome-name" runat=server >Darren</span>
                     </div>
                 </div>
-                <div class="topbar-right"></div>
+                <div class="topbar-right">
+                    
+                </div>
             </header>
             <div class="app-frame">
                 <div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>

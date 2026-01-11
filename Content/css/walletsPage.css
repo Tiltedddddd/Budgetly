@@ -1,0 +1,55 @@
+﻿body {
+}
+
+/* Container for horizontal layout */
+.wallet-container {
+    display: flex;
+    flex-wrap: wrap; /* wraps to next line if too many wallets */
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* Each wallet "card" */
+.wallet-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 300px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    background-color: #fafafa;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.wallet-info, .wallet-actions, .wallet-type {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.wallet-type img {
+    border-radius: 50%;
+    background-color: #fff;
+    padding: 5px;
+}
+
+a, .link-button {
+    color: #0078D7;
+    text-decoration: none;
+    margin: 0 4px;
+}
+
+a:hover, .link-button:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.default-text {
+    color: green;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+.unsynced {
+    color: red;
+}

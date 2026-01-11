@@ -4,8 +4,13 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    
-    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
+    <!-- =============== Display Wallet ================= -->
+    <asp:GridView 
+        ID="gV_WalletScreen" 
+        runat="server" 
+        AutoGenerateColumns="False" 
+        OnSelectedIndexChanged="GridView1_SelectedIndexChanged"
+        OnRowDataBound="gV_WallerScreen_RowDataBound">
         <Columns>
             <asp:BoundField DataField="AccountName" />
             <asp:TemplateField>
@@ -17,23 +22,22 @@
                         runat="server" 
                         CommandArgument="IsGmailSyncEnabled" 
                         CommandName="SyncEmail"
-                        >Set up parsing!</asp:LinkButton>
+                        >Set up parsing</asp:LinkButton>
+                    <br />
+                    <span id="DefaultText" runat="server">Default</span>
                 </ItemTemplate>
             </asp:TemplateField>
-            <asp:BoundField DataField="IsDefault" />
             <asp:BoundField DataField="Balance" />
             <asp:HyperLinkField NavigateUrl="~/Pages/transactionsPage.aspx" Text="View Transactions" />
-            <asp:CommandField ShowEditButton="True" />
-            <asp:CommandField DeleteText="Remove" ShowDeleteButton="True" />
-            <asp:CommandField SelectText="Set to Default" ShowSelectButton="True" />
-            <asp:ImageField DataImageUrlField="~ImagePath">
+            <asp:CommandField ShowEditButton="True" DeleteText="Remove" SelectText="Set to Default" ShowDeleteButton="True" ShowSelectButton="True" />
+            <asp:ImageField DataImageUrlField="ImagePath">
             </asp:ImageField>
         </Columns>
     </asp:GridView>
 
     
     <br />
-
+    <!-- ======= Add Card ======== -->
     <asp:Button ID="btn_addCard" runat="server" Text="+ Add Card" OnClick="btn_addCard_Click" />
     
     <br />
@@ -44,7 +48,13 @@
         <asp:TextBox ID="tb_Name" runat="server"></asp:TextBox>
 
         <br />
-        <asp:RequiredFieldValidator ID="rfv_AccountName" runat="server" ControlToValidate="tb_Name" ErrorMessage="RequiredFieldValidator" ForeColor="Red" ValidationGroup="CreateWallet">Name is required</asp:RequiredFieldValidator>
+        <asp:RequiredFieldValidator 
+            ID="rfv_AccountName" 
+            runat="server" 
+            ControlToValidate="tb_Name" 
+            ErrorMessage="Name is required" 
+            ForeColor="Red" 
+            ValidationGroup="CreateWallet"></asp:RequiredFieldValidator>
 
         <br />
 
