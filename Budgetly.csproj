@@ -118,6 +118,10 @@
     <Compile Include="Class\UserPet.cs" />
     <Compile Include="Class\UserProfile.cs" />
     <Compile Include="Class\UserSubscription.cs" />
+    <Compile Include="Controllers\TransactionsController.cs" />
+    <Compile Include="Models\LookupItem.cs" />
+    <Compile Include="Models\TransactionEditDto.cs" />
+    <Compile Include="Models\TransactionRowDto.cs" />
     <Compile Include="Pages\analyticsPage.aspx.cs">
       <DependentUpon>analyticsPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
