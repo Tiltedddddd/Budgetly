@@ -12,11 +12,84 @@
             <!-- Left column -->
             <div class="dashboard-col">
                 <section class="widget widget-pet">
-                    Pet widget
+                    <div class="pet-card">
+                        <a href="denPage.aspx" runat="server">
+                            <img src="../Content/images/dashboard/chickenPetIcon.png" alt="Pet Chicken">
+                        </a>
+                    </div>
+
+                    <div class="pet-info">
+                        <h3 class="pet-name">Chicky</h3>
+
+                        <div class="pet-stat">
+                            <span class="label">XP</span>
+                            <div class="progress">
+                                <div class="progress-fill xp" style="width: 60%"></div>
+                            </div>
+                        </div>
+
+                        <div class="pet-stat">
+                            <span class="label">Eco Score</span>
+                            <div class="progress">
+                                <div class="progress-fill eco" style="width: 85%"></div>
+                            </div>
+                        </div>
+                    </div>
                 </section>
 
+                <!--Leaderbaord widget-->
                 <section class="widget widget-leaderboard">
-                    Leaderboard widget
+                    <h3 class="leaderboard-title">Friends Leaderboard</h3>
+                    <p class="leaderboard-subtitle">Best spending habits</p>
+
+                    <ul class="leaderboard-list">
+                        <li class="leaderboard-item">
+                            <span class="rank">1.</span>
+                            <div class="avatar">
+                                <img src="../Content/images/dashboard/defaultUserIcon.png" alt="User avatar">
+                            </div>
+
+                            <span class="name">Issac Tan</span>
+                        </li>
+
+                        <li class="leaderboard-item">
+                            <span class="rank">2.</span>
+                            <div class="avatar">
+                                <img src="../Content/images/dashboard/defaultUserIcon.png" alt="User avatar">
+                            </div>
+
+                            <span class="name">Ian</span>
+                        </li>
+
+                        <li class="leaderboard-item">
+                            <span class="rank">3.</span>
+                            <div class="avatar">
+                                <img src="../Content/images/dashboard/defaultUserIcon.png" alt="User avatar">
+                            </div>
+
+                            <span class="name">John Doe</span>
+                        </li>
+
+                        <li class="leaderboard-item">
+                            <span class="rank">4.</span>
+                            <div class="avatar">
+                                <img src="../Content/images/dashboard/defaultUserIcon.png" alt="User avatar">
+                            </div>
+
+                            <span class="name">Issac Tan</span>
+                        </li>
+
+                        <li class="leaderboard-item">
+                            <span class="rank">5.</span>
+                            <div class="avatar">
+                                <img src="../Content/images/dashboard/defaultUserIcon.png" alt="User avatar">
+                            </div>
+
+                            <span class="name">Ian</span>
+                        </li>
+                    </ul>
+
+                    <a href="denPage.aspx" runat="server" class="leaderboard-view">View All</a>
                 </section>
             </div>
 
@@ -104,7 +177,7 @@
 
                     <div class="transactions-header">
                         <h4>Recent Transactions</h4>
-                        <a class="transactions-link">See All</a>
+                        <a href="transactionsPage.aspx" runat="server" class="transactions-link">See All</a>
                     </div>
 
                     <ul class="transactions-list" id="transactionsList">

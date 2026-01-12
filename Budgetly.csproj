@@ -103,6 +103,8 @@
     <Content Include="Content\css\dashboard.css" />
     <Content Include="Content\css\site.css" />
     <Content Include="Content\images\dashboard\card-chip.png" />
+    <Content Include="Content\images\dashboard\chickenPetIcon.png" />
+    <Content Include="Content\images\dashboard\defaultUserIcon.png" />
     <Content Include="Content\images\dashboard\promoWidgetBackground.png" />
     <Content Include="Content\images\icons\foodIcon.png" />
     <Content Include="Content\images\icons\grabLogo.png" />

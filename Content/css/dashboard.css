@@ -2,6 +2,10 @@
    Dashboard-only masterpage override
 ========================= */
 
+html, body {
+    overflow: hidden;
+}
+
 /*Remove masterpage stuff*/
 .main-content-container .content-placeholder:has(.page-dashboard) {
     background: transparent;
@@ -53,7 +57,7 @@
 ========================= */
 
 .widget {
-    background: var(--c-surface); /*Just for dev visability*/
+    background: var(--c-surface); 
     border-radius: var(--r-sm);
     padding: 18px;
     color: #000000;
@@ -63,41 +67,167 @@
 }
 
 /* Left column */
+/*Pet*/
 .widget-pet {
     min-height: 180px;
+    display: flex;
+    gap: 16px;
+    align-items: center;
 }
 
+.widget-pet:hover .pet-card {
+    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+}
+
+.pet-card {
+    width: 110px;
+    height: 110px;
+    border-radius: 14px;
+    border: 1px solid #e5e7eb;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pet-card img {
+    width: 64px;
+    height: auto;
+    image-rendering: pixelated;
+}
+
+.pet-info {
+    flex: 1;
+}
+
+.pet-name {
+    margin: 0 0 10px;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+/* stat rows */
+.pet-stat {
+    margin-bottom: 8px;
+}
+
+.pet-stat .label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+/* progress bars */
+.progress {
+    height: 8px;
+    background: #e5e7eb;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    border-radius: 999px;
+}
+
+.progress-fill.xp {
+    background: #60a5fa;
+}
+
+.progress-fill.eco {
+    background: #4ade80;
+}
+
+
+/*LEADERBOARD*/
 .widget-leaderboard {
-    min-height:535px;
+    min-height: 535px;
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.leaderboard-title {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.leaderboard-subtitle {
+    margin: 4px 0 16px;
+    font-size: 0.85rem;
+    color: #6b7280;
+}
+
+.leaderboard-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly; 
+}
+
+.leaderboard-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+}
+
+.rank {
+    width: 24px;
+    font-weight: 600;
+}
+
+
+.avatar {
+    width: 46px;
+    height: 46px;
+    border: none;
+    background: transparent;
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.name {
+    font-size: 1.05rem;
+}
+
+.leaderboard-view {
+    display: block;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #9ca3af;
+    text-decoration: underline;
+    margin-bottom: 20px;
+    
+    transition: color 0.5s ease;
+}
+
+.leaderboard-view:hover {
+    color: #000000;
 }
 
 
 
 
-/* Right column */
-.widget-expenses {
-    min-height: 230px;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-    margin-bottom: 5px;
-}
-
-.widget-income {
-    min-height: 230px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-    margin-bottom: 10px;
-}
 
 
+
+/*Center Columns*/
 
 /* ===================================================================================================================================
    ACCOUNTS WIDGETTTT
 ======================================================================================================================================*/
-
-/* =========================
-   Accounts placement
-========================= */
 
 .widget-accounts {
     min-height: 300px;
@@ -119,10 +249,13 @@
     font-size: 14px;
     cursor: pointer;
     margin-top: 4px;
+    transition: background 0.5s ease, color 0.5s ease;
 }
 
 .btn-add-card:hover {
     background: #79C1FF;
+    color: #FFFFFF;
+
 }
 
 
@@ -355,6 +488,26 @@
     color: #22c55e;
 }
 
+
+/*RIGHT COLUMN*/
+
+/*EXPENSES*/
+.widget-expenses {
+    min-height: 230px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    margin-bottom: 5px;
+}
+
+/*INCOME*/
+.widget-income {
+    min-height: 230px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    margin-bottom: 10px;
+}
+
+
 /*PROMO WIDGET*/
 .widget-promo {
     position: relative;
@@ -385,7 +538,7 @@
 }
 
 .promo-content h2 {
-    margin-top:0;
+    margin-top: 7px;
     font-size: 1.6rem;
     font-weight: 700;
     line-height: 1.25;
@@ -408,13 +561,14 @@
     background: linear-gradient(135deg, #ede9fe, #c7d2fe);
     color: #111827;
     box-shadow: 0 6px 18px rgba(0,0,0,0.35);
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
 .promo-btn:hover {
-    background-color: #413b93;
-    color: rgba(0, 0, 0, 0.25);
+    background: #413b93;
+    color: rgba(255, 255, 255, 255.25);
 }
+
 
 
 
