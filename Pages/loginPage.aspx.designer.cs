@@ -8,10 +8,10 @@
 //------------------------------------------------------------------------------
 
 namespace Budgetly.Pages {
-    
-    
+
+
     public partial class loginPage {
-        
+
         /// <summary>
         /// form1 control.
         /// </summary>

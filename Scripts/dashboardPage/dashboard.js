@@ -182,11 +182,9 @@ function renderTransactions(data) {
 */
 
 
-
-//Touch this one when swapping to database
 function refreshTransactions(accountId) {
     /*const data = TRANSACTIONS_BY_ACCOUNT[accountId] || [];
-    renderTransactions(data);
+    renderTransactions(data); (Hardcoded fake data)
     */
 
     fetch(`/api/transactions?accountId=${accountId}`)
