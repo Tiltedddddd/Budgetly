@@ -130,7 +130,9 @@
     <Content Include="Pages\denPage.aspx" />
     <Content Include="Pages\goalSettingPage.aspx" />
     <Content Include="Pages\dashboard.aspx" />
+    <Content Include="Pages\loginPage.aspx" />
     <Content Include="Pages\settingsPage.aspx" />
+    <Content Include="Pages\signUpPage.aspx" />
     <Content Include="Pages\transactionsPage.aspx" />
     <Content Include="Pages\ViewData.aspx" />
     <Content Include="Pages\walletsPage.aspx" />
@@ -207,12 +209,26 @@
     <Compile Include="Pages\dashboard.aspx.designer.cs">
       <DependentUpon>dashboard.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\loginPage.aspx.cs">
+      <DependentUpon>loginPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\loginPage.aspx.designer.cs">
+      <DependentUpon>loginPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\settingsPage.aspx.cs">
       <DependentUpon>settingsPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\settingsPage.aspx.designer.cs">
       <DependentUpon>settingsPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\signUpPage.aspx.cs">
+      <DependentUpon>signUpPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\signUpPage.aspx.designer.cs">
+      <DependentUpon>signUpPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\transactionsPage.aspx.cs">
       <DependentUpon>transactionsPage.aspx</DependentUpon>
