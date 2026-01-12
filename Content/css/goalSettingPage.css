@@ -1,0 +1,458 @@
+﻿/* =========================
+   Goal Setting - Full Final Center-Aligned
+========================= */
+
+body {
+    background-color: transparent !important;
+    color: var(--c-text);
+    margin: 0;
+}
+
+.goal-card {
+    background-color: transparent !important;
+    padding: 10px 40px;
+    width: 100%;
+    max-width: 1400px;
+    min-height: 85vh;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 1. Income Section */
+.income-section {
+    margin-bottom: 20px; /* Space between this section and the table */
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px; /* This gives you precise control over the space between the two lines */
+}
+
+.income-label {
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--c-text);
+    line-height: 1.1;
+    /* FIX: Remove default paragraph margins */
+    margin: 0;
+}
+
+.income-sub-label {
+    font-size: 14px; /* Slightly larger for readability */
+    color: var(--c-muted);
+    /* FIX: Remove default paragraph margins */
+    margin: 0;
+}
+/* 2. Category Table - 33.33% Columns for Perfect Price Centering */
+.budget-table-container {
+    background: var(--c-app-bg);
+    border-radius: var(--r-md);
+    padding: 20px 35px;
+    margin: 5px 0;
+    position: relative;
+}
+
+.budget-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+    .budget-table td {
+        padding: 14px 0;
+        border-bottom: 1px solid rgba(0,0,0,0.03);
+        font-size: 18px;
+    }
+
+.col-category {
+    text-align: left;
+    width: 33.33%;
+    font-weight: 500;
+}
+
+.col-amount {
+    text-align: center; /* Centered to Card and Nav */
+    width: 33.33%;
+    font-weight: 600;
+}
+
+.col-actions {
+    text-align: right;
+    width: 33.33%;
+}
+
+/* 3. Action Links & Inline Textbox */
+.action-link.blue {
+    color: #3b82f6 !important;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.action-link.red {
+    color: #ef4444 !important;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.action-link.muted {
+    color: var(--c-muted);
+    text-decoration: none;
+}
+
+.sep {
+    color: #cbd5e1;
+    margin: 0 8px;
+}
+
+/* Styles the textbox when you are editing a row */
+.budget-table .form-input {
+    width: 100px;
+    padding: 5px;
+    text-align: center;
+    font-size: 16px;
+}
+
+/* 4. Month Navigation - 1/4 size increase */
+.month-selector-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.current-month-display {
+    background: #ffffff;
+    padding: 10px 25px;
+    border-radius: 8px;
+    font-weight: 600;
+    border: 1px solid #eef2f6;
+    font-size: 18px;
+    min-width: 150px;
+    text-align: center;
+    text-decoration: none;
+    color: var(--c-text) !important;
+}
+
+.nav-arrow {
+    background: #ffffff;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid #eef2f6;
+    font-size: 16px;
+    color: var(--c-text) !important;
+    text-decoration: none;
+}
+
+/* 5. Budget Summary - 1/8 size increase */
+.budget-summary {
+    font-size: 17px;
+    color: var(--c-text);
+    padding: 20px 0 10px 0;
+}
+
+/* 6. Add Category Button & Panel */
+.btn-add-toggle {
+    background: var(--c-accent);
+    color: #000000;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.add-form-panel {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.form-select, .form-input {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-size: 15px;
+    color: var(--c-text);
+    outline: none;
+}
+
+/* 7. CALENDAR PICKER - COMPLETE */
+.picker-dropdown {
+    position: absolute;
+    bottom: 85px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: var(--r-md);
+    padding: 15px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    z-index: 100;
+    width: 280px;
+}
+
+.picker-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+#ContentPlaceHolder1_btnSwitchToYear {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    padding: 7px 20px;
+    border-radius: 6px;
+    color: var(--c-text);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    flex-grow: 1;
+    text-align: center;
+    margin-right: 10px;
+}
+
+.picker-header .blue {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    padding: 7px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 12px;
+    color: #3b82f6 !important;
+}
+
+.picker-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+    .picker-grid a {
+        padding: 12px 0;
+        text-align: center;
+        text-decoration: none;
+        color: var(--c-text);
+        background: var(--c-nav-btn);
+        border-radius: 8px;
+        font-size: 13px;
+        font-weight: 400;
+    }
+
+        .picker-grid a:hover {
+            background: var(--c-accent);
+        }
+
+    .picker-grid .active-item {
+        background: var(--c-accent) !important;
+        color: #000000 !important;
+        font-weight: 600;
+    }
+/* 1. Add Action Area Spacing */
+.add-action-area {
+    margin-top: 30px; /* Increased padding above the button area */
+    display: flex;
+    flex-direction: column;
+}
+
+/* 2. Form Panel Layout */
+.add-form-panel {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    background: #f8fafc; /* Very light subtle background */
+    padding: 10px;
+    border-radius: 12px;
+    width: fit-content;
+}
+
+.form-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* 3. Pretty Dropdown Styling */
+.custom-dropdown {
+    appearance: none; /* Removes default arrow */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23475569' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 40px !important; /* Space for the new arrow */
+    cursor: pointer;
+    min-width: 180px;
+    border: 1px solid #cbd5e1;
+    transition: all 0.2s ease;
+}
+
+    .custom-dropdown:hover {
+        border-color: var(--c-accent);
+        background-color: #fff;
+    }
+
+/* Ensure form input matches dropdown height/style */
+.form-input {
+    border: 1px solid #cbd5e1;
+    transition: border-color 0.2s;
+}
+
+    .form-input:focus {
+        border-color: var(--c-accent);
+    }
+
+/* Ensure Cancel button looks like a link */
+.add-form-panel .action-link.muted {
+    text-decoration: none;
+    color: var(--c-muted);
+}
+
+    .add-form-panel .action-link.muted:hover {
+        color: #ef4444; /* Slight red tint on hover to signify cancel */
+    }
+
+/* 1. Pretty Dropdown - Fixed Text Alignment */
+.custom-dropdown {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #ffffff;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23475569' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    /* Center the text vertically */
+    height: 42px;
+    line-height: normal; /* Resetting this prevents text from sinking */
+    padding: 0 40px 0 15px; /* Top, Right (space for arrow), Bottom, Left */
+
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 15px;
+    color: var(--c-text);
+    min-width: 200px;
+    cursor: pointer;
+    box-sizing: border-box; /* Ensures padding stays inside the 42px height */
+    vertical-align: middle;
+}
+
+/* 2. Amount Input - Matching Height */
+.form-input {
+    height: 42px;
+    padding: 0 15px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 15px;
+    box-sizing: border-box;
+    vertical-align: middle;
+}
+
+/* 3. Form Actions - Align everything in the row */
+.add-form-panel {
+    display: flex;
+    gap: 12px;
+    align-items: center; /* Vertical center for all items in the row */
+    margin-top: 15px;
+}
+
+.form-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    height: 42px; /* Matches the dropdown/input height */
+}
+
+/* 4. Buttons - Ensuring they match heights */
+.btn-add-toggle {
+    background: var(--c-accent);
+    color: #000000;
+    border: none;
+    padding: 10px 24px; /* Balanced horizontal padding */
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 400;
+    cursor: pointer;
+    width: fit-content; /* Key: prevents it from stretching */
+    display: inline-block;
+}
+
+.cancel-btn {
+    height: 42px;
+    padding: 0 15px;
+    background: none;
+    border: none;
+    color: var(--c-muted);
+    font-size: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+#notificationZone {
+    height: 35px;
+    background: transparent !important;
+}
+
+.status-message {
+    background: transparent !important;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+/* Your Action Colors */
+.msg-success {
+    color: #22c55e !important;
+}
+/* Green - Add */
+.msg-info {
+    color: #3b82f6 !important;
+}
+/* Blue - Edit */
+.msg-error {
+    color: #ef4444 !important;
+}
+/* Red - Delete / Error */
+
+/* 2. Fix Dropdown/Amount Text Centering */
+.custom-dropdown, .form-input {
+    height: 42px;
+    box-sizing: border-box;
+    vertical-align: middle;
+    display: inline-flex;
+    align-items: center;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+/* 3. Action Area Spacing */
+.add-action-area {
+    margin-top: 15px; /* Spacing above the button */
+    padding-top: 10px; /* Inner padding */
+}
+
+.budget-warning-alert {
+    padding: 15px;
+    margin: 10px 0 20px 0;
+    font-weight: 700;
+    text-align: center;
+    border-radius: 8px;
+    background-color: #fee2e2; /* Light Red */
+    color: #b91c1c; /* Dark Red */
+    border: 1px solid #fecaca;
+    display: block; /* Ensures it takes full width */
+}
+
+.alert-danger {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    border-left: 5px solid #d9534f; /* Thicker red line to grab attention */
+}

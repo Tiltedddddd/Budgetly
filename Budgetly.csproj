@@ -101,6 +101,7 @@
   <ItemGroup>
     <Content Include=".gitignore" />
     <Content Include="Content\css\dashboard.css" />
+    <Content Include="Content\css\goalSettingPage.css" />
     <Content Include="Content\css\site.css" />
     <Content Include="Content\images\dashboard\card-chip.png" />
     <Content Include="Content\images\dashboard\chickenPetIcon.png" />
@@ -166,12 +167,15 @@
     <Compile Include="Class\UserProfile.cs" />
     <Compile Include="Class\UserSubscription.cs" />
     <Compile Include="Controllers\DashboardApiController.cs" />
+    <Compile Include="Controllers\GoalsApiController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\DTOs\DashboardAccountDto.cs" />
     <Compile Include="Models\DTOs\DashboardChartSummaryDto.cs" />
     <Compile Include="Models\DTOs\DashboardTransactionDto.cs" />
+    <Compile Include="Models\DTOs\GoalEnvelopeDto.cs" />
+    <Compile Include="Models\DTOs\GoalSummaryDto.cs" />
     <Compile Include="Pages\analyticsPage.aspx.cs">
       <DependentUpon>analyticsPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
