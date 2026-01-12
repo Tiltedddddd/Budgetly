@@ -13,8 +13,8 @@ namespace Budgetly
         {
             string path = Request.AppRelativeCurrentExecutionFilePath;
 
-            if (path.Contains("homePage.aspx"))
-                navHome.Attributes["class"] += " is-active";
+            if (path.Contains("dashboard.aspx"))
+                navDashboard.Attributes["class"] += " is-active";
             else if (path.Contains("analyticsPage.aspx"))
                 navAnalytics.Attributes["class"] += " is-active";
             else if (path.Contains("transactionsPage.aspx"))

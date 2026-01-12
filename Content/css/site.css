@@ -11,6 +11,7 @@
     /*Sidebar layout*/
     --sidebar-collapsed: 88px;
     --sidebar-expanded: 270px;
+
     /*Colors*/
     --c-app-bg: #F5F7F9; /* container background */
     --c-surface: #FFFFFF; /* cards + site background */
@@ -19,14 +20,17 @@
     --c-text: #000000;
     --c-muted: #64748b;
     --c-overlay: rgba(0, 0, 0, 0.45); /*For when sidebar is active*/
+
     /*Radius*/
     --r-lg: 18px; /* large = app-frame / overlay */
     --r-md: 16px; /* medium = sidebar/topbar/main container */
     --r-sm: 14px; /* small = nav items / icon bubble / content placeholder */
     --r-pill: 999px; /*user avatar circle*/
+
     /*Transitions*/
     --t-fast: 0.2s ease;
     --t-snap: 0.18s ease;
+
     /*Z-indexes*/
     --z-overlay: 40;
     --z-sidebar: 50;
