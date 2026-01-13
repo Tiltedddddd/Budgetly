@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master"
+﻿<%@ Page Title="Cruddata" Page Language="C#" MasterPageFile="~/Site.Master"
     AutoEventWireup="true"
     CodeBehind="CRUDData.aspx.cs"
     Inherits="Budgetly.CRUDData" %>

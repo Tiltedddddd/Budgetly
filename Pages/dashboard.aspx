@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Home" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="dashboard.aspx.cs" Inherits="Budgetly.Pages.homePage" %>
+﻿<%@ Page Title="Dashboard" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="dashboard.aspx.cs" Inherits="Budgetly.Pages.dashboard" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="../Content/css/dashboard.css" />
@@ -6,10 +6,8 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="page-dashboard">
-
         <div class="dashboard-grid">
 
-            <!-- Left column -->
             <div class="dashboard-col">
                 <section class="widget widget-pet">
                     <div class="pet-card">
@@ -37,8 +35,8 @@
                     </div>
                 </section>
 
-                <!--Leaderbaord widget-->
-                <section class="widget widget-leaderboard">
+
+               <section class="widget widget-leaderboard">
                     <h3 class="leaderboard-title">Friends Leaderboard</h3>
                     <p class="leaderboard-subtitle">Best spending habits</p>
 
@@ -94,8 +92,7 @@
             </div>
 
 
-            <!-- Center column -->
-            <div class="dashboard-col">
+           <div class="dashboard-col">
                 <section class="widget widget-accounts">
                     <!-- Header -->
                     <div class="card-header">
@@ -172,8 +169,8 @@
 
                 </section>
 
-                <!-- Widget 5: Recent transactions -->
-                <section class="widget widget-transactions">
+
+               <section class="widget widget-transactions">
 
                     <div class="transactions-header">
                         <h4>Recent Transactions</h4>
@@ -197,9 +194,7 @@
                 </section>
 
             </div>
-
-            <!-- Right column -->
-            <div class="dashboard-col">
+<div class="dashboard-col">
                 <!-- Widget 3: Expenses summary -->
                 <section class="widget widget-expenses">
                     Expenses widget
@@ -231,7 +226,8 @@
 
         </div>
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../Scripts/dashboardPage/dashboard.js"></script>
+
 </asp:Content>
+
