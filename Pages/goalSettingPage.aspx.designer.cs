@@ -60,6 +60,15 @@ namespace Budgetly.Pages
         protected global::System.Web.UI.WebControls.Literal litOverAmount;
 
         /// <summary>
+        /// btnCopyLastMonth control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnCopyLastMonth;
+
+        /// <summary>
         /// rptBudgetEnvelopes control.
         /// </summary>
         /// <remarks>
@@ -195,6 +204,15 @@ namespace Budgetly.Pages
         protected global::System.Web.UI.WebControls.TextBox txtAmount;
 
         /// <summary>
+        /// revAmount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revAmount;
+
+        /// <summary>
         /// btnSubmitAdd control.
         /// </summary>
         /// <remarks>
@@ -202,5 +220,41 @@ namespace Budgetly.Pages
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSubmitAdd;
+
+        /// <summary>
+        /// ddlPlannerCats control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlPlannerCats;
+
+        /// <summary>
+        /// hfProjectedCatID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfProjectedCatID;
+
+        /// <summary>
+        /// hfProjectedValue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfProjectedValue;
+
+        /// <summary>
+        /// btnImplement control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnImplement;
     }
 }

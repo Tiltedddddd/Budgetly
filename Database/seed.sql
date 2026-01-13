@@ -56,18 +56,18 @@ VALUES
 (6,'/img/acc6.png');
 
 -- CATEGORIES (IDs will be 1..10 in this order)
-INSERT INTO Categories (CategoryName, EcoWeight, IsEssential, IconPath)
+INSERT INTO Categories (CategoryID, CategoryName, EcoWeight, IsEssential, IconPath)
 VALUES
-('Housing',0.95,1,'/icons/housing.png'),              -- category 1 no img yet
-('Food',0.80,1,'/Content/images/icons/foodIcon.png'),         -- 2
-('Transportation',0.75,1,'/Content/images/icons/transportIcon.png'),     -- category 3
-('Utilities',0.90,1,'/Content/images/icons/utilitiesIcon.png'),          -- category 4
-('Healthcare',0.90,1,'/Content/images/icons/healthcareIcon.png'),         -- category 5
-('Education',0.95,1,'/icons/education.png'),          -- 6 no img yet
-('Shopping',0.40,0,'/Content/images/icons/shoppingIcon.png'),            -- category 7
-('Entertainment',0.30,0,'/icons/entertainment.png'),  -- category 8 no img yet
-('Savings & Investments',1.00,1,'/icons/savings.png'),-- category 9 no img yet
-('Miscellaneous',0.50,0,'/icons/misc.png');           -- category 10 no img yet
+(1, 'Housing', 0.95, 1, '/icons/housing.png'),
+(2, 'Food', 0.80, 1, '/Content/images/icons/foodIcon.png'),
+(3, 'Transportation', 0.75, 1, '/Content/images/icons/transportIcon.png'),
+(4, 'Utilities', 0.90, 1, '/Content/images/icons/utilitiesIcon.png'),
+(5, 'Healthcare', 0.90, 1, '/Content/images/icons/healthcareIcon.png'),
+(6, 'Education', 0.95, 1, '/icons/education.png'),
+(7, 'Shopping', 0.40, 0, '/Content/images/icons/shoppingIcon.png'),
+(8, 'Entertainment', 0.30, 0, '/icons/entertainment.png'),
+(9, 'Savings & Investments', 1.00, 1, '/icons/savings.png'),
+(10,'Miscellaneous', 0.50, 0, '/icons/misc.png');
 
 
 -- TRANSACTIONS (NO UserID; must use MANUAL/GMAIL and INCOME/EXPENSE)
