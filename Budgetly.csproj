@@ -101,6 +101,7 @@
   <ItemGroup>
     <Content Include=".gitignore" />
     <Content Include="Content\css\dashboard.css" />
+    <Content Include="Content\css\login.css" />
     <Content Include="Content\css\site.css" />
     <Content Include="Content\images\dashboard\card-chip.png" />
     <Content Include="Content\images\dashboard\chickenPetIcon.png" />
@@ -122,6 +123,10 @@
     <Content Include="Content\images\icons\shoppingIcon.png" />
     <Content Include="Content\images\icons\transportIcon.png" />
     <Content Include="Content\images\icons\utilitiesIcon.png" />
+    <Content Include="Content\images\loginSignUp\loginSignUpBar.png" />
+    <Content Include="Content\images\loginSignUp\loginSignUpBlob.png" />
+    <Content Include="Content\images\loginSignUp\loginSignUpGuy.png" />
+    <Content Include="Content\images\loginSignUp\loginSignUpLine.png" />
     <Content Include="Database\schema.sql" />
     <Content Include="Database\seed.sql" />
     <Content Include="Global.asax" />
