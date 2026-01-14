@@ -132,6 +132,7 @@
     <Content Include="Pages\goalSettingPage.aspx" />
     <Content Include="Pages\dashboard.aspx" />
     <Content Include="Pages\settingsPage.aspx" />
+    <Content Include="Pages\testLogin.aspx" />
     <Content Include="Pages\transactionsPage.aspx" />
     <Content Include="Pages\ViewData.aspx" />
     <Content Include="Pages\walletsPage.aspx" />
@@ -217,6 +218,13 @@
     </Compile>
     <Compile Include="Pages\settingsPage.aspx.designer.cs">
       <DependentUpon>settingsPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\testLogin.aspx.cs">
+      <DependentUpon>testLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\testLogin.aspx.designer.cs">
+      <DependentUpon>testLogin.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\transactionsPage.aspx.cs">
       <DependentUpon>transactionsPage.aspx</DependentUpon>

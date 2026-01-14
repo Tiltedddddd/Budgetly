@@ -10,11 +10,20 @@ using System.Web.UI.WebControls;
 
 namespace Budgetly.Pages
 {
-    public partial class goalSettingPage : System.Web.UI.Page
+    public partial class goalSettingPage : Page
     {
         private readonly string connStringName = "BudgetlyDBContext";
 
-        private int CurrentUserID => Session["UserID"] != null ? Convert.ToInt32(Session["UserID"]) : 1;
+        // Get current user from session
+        private int CurrentUserID
+        {
+            get
+            {
+                if (Session["CurrentUserID"] == null)
+                    Response.Redirect("~/Pages/testLogin.aspx"); // redirect if no user
+                return Convert.ToInt32(Session["CurrentUserID"]);
+            }
+        }
 
         private string SelectedMonth
         {
@@ -30,17 +39,6 @@ namespace Budgetly.Pages
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            // Handle JavaScript __doPostBack calls (e.g., from the 'Replace' confirmation)
-            if (IsPostBack)
-            {
-                string eventTarget = Request["__EVENTTARGET"];
-                string eventArgument = Request["__EVENTARGUMENT"];
-                if (eventTarget == "ReplaceCategory")
-                {
-                    ReplaceExistingCategory(int.Parse(eventArgument), decimal.Parse(txtAmount.Text));
-                }
-            }
-
             if (!IsPostBack)
             {
                 LoadGoalData();
@@ -55,12 +53,11 @@ namespace Budgetly.Pages
             {
                 conn.Open();
 
-                // 1. Fetch Income and Global Budget Limit
+                // Fetch Income and Global Budget Limit
                 SqlCommand cmdData = new SqlCommand(@"
                     SELECT 
                         ISNULL((SELECT SUM(Amount) FROM Income WHERE UserID=@UID AND YearMonth=@YM), 0) as FixedIncome,
                         ISNULL((SELECT TotalAmount FROM Budgets WHERE UserID=@UID AND YearMonth=@YM), 0) as BudgetLimit", conn);
-
                 cmdData.Parameters.AddWithValue("@UID", CurrentUserID);
                 cmdData.Parameters.AddWithValue("@YM", SelectedMonth);
 
@@ -79,7 +76,7 @@ namespace Budgetly.Pages
                 litIncomeSub.Text = fixedIncome.ToString("N2");
                 litBudgetAmount.Text = monthlyBudgetLimit.ToString("N2");
 
-                // 2. Fetch specific Budget Envelopes and Progress
+                // Fetch Budget Envelopes
                 string sqlEnvelopes = @"
                     SELECT 
                         e.EnvelopeID, 
@@ -103,39 +100,70 @@ namespace Budgetly.Pages
                 rptBudgetEnvelopes.DataSource = dt;
                 rptBudgetEnvelopes.DataBind();
 
-                // 3. Calculate Summary Values
-                decimal totalAllocated = dt.Rows.Count > 0
-                    ? dt.AsEnumerable().Sum(r => r.Field<decimal>("MonthlyLimit"))
-                    : 0;
-
-                // Fix for NullReferenceException: Check if the category exists before summing
-                var savingsRows = dt.AsEnumerable()
-                    .Where(r => r.Field<string>("CategoryName").Equals("Savings & Investments", StringComparison.OrdinalIgnoreCase));
-
-                decimal savingsAllocated = savingsRows.Any()
-                    ? savingsRows.Sum(r => r.Field<decimal>("MonthlyLimit"))
-                    : 0;
-
+                decimal totalAllocated = dt.AsEnumerable().Sum(r => r.Field<decimal>("MonthlyLimit"));
                 litTotalBudgeted.Text = totalAllocated.ToString("N2");
                 litRemaining.Text = (monthlyBudgetLimit - totalAllocated).ToString("N2");
 
-                // Potential Savings = (Income - All Limits) + (Money already explicitly sent to Savings category)
-                decimal potentialSavings = (fixedIncome - totalAllocated) + savingsAllocated;
-                
-
-                // 4. Over-Budget Warning logic
+                // Over-Budget Warning
                 if (totalAllocated > monthlyBudgetLimit)
                 {
                     pnlBudgetWarning.Visible = true;
                     litOverAmount.Text = (totalAllocated - monthlyBudgetLimit).ToString("N2");
                 }
-                else { pnlBudgetWarning.Visible = false; }
+                else
+                {
+                    pnlBudgetWarning.Visible = false;
+                }
 
                 litCurrentMonth.Text = DateTime.Parse(SelectedMonth + "-01").ToString("MMM yyyy");
             }
         }
 
-        protected string GetProgressWidth(object spent, object limit)
+        protected void PopulateCategoryDropdowns()
+        {
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings[connStringName].ConnectionString))
+            {
+                conn.Open();
+
+                // All categories for ADD
+                SqlDataAdapter daAll = new SqlDataAdapter("SELECT CategoryID, CategoryName FROM Categories ORDER BY CategoryName", conn);
+                DataTable dtAll = new DataTable();
+                daAll.Fill(dtAll);
+                ddlCategories.DataSource = dtAll;
+                ddlCategories.DataTextField = "CategoryName";
+                ddlCategories.DataValueField = "CategoryID";
+                ddlCategories.DataBind();
+                ddlCategories.Items.Insert(0, new ListItem("-- Select Category --", "0"));
+
+                // Categories in current month's envelopes for PLANNER
+                string sqlActive = @"
+                    SELECT c.CategoryID, c.CategoryName 
+                    FROM Categories c
+                    JOIN BudgetEnvelopes e ON c.CategoryID = e.CategoryID
+                    JOIN Budgets b ON e.BudgetID = b.BudgetID
+                    WHERE b.UserID = @UID AND b.YearMonth = @YM
+                    ORDER BY c.CategoryName";
+
+                SqlCommand cmdActive = new SqlCommand(sqlActive, conn);
+                cmdActive.Parameters.AddWithValue("@UID", CurrentUserID);
+                cmdActive.Parameters.AddWithValue("@YM", SelectedMonth);
+
+                SqlDataAdapter daActive = new SqlDataAdapter(cmdActive);
+                DataTable dtActive = new DataTable();
+                daActive.Fill(dtActive);
+
+                ddlPlannerCats.DataSource = dtActive;
+                ddlPlannerCats.DataTextField = "CategoryName";
+                ddlPlannerCats.DataValueField = "CategoryID";
+                ddlPlannerCats.DataBind();
+                ddlPlannerCats.Items.Insert(0, new ListItem("--Category--", "0"));
+            }
+        }
+
+        // Keep your other methods (btnAddCategory_Click, rptBudgetEnvelopes_ItemCommand, UpdateBudget, etc.)
+        // just ensure anywhere you use a user ID, replace with CurrentUserID
+    
+protected string GetProgressWidth(object spent, object limit)
         {
             decimal s = Convert.ToDecimal(spent);
             decimal l = Convert.ToDecimal(limit);
@@ -388,46 +416,7 @@ namespace Budgetly.Pages
             ShowNotification("Budget updated successfully!", "💡", "success");
             ScriptManager.RegisterStartupScript(this, GetType(), "closePlanner", "togglePlanner();", true);
         }
-        private void PopulateCategoryDropdowns()
-        {
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings[connStringName].ConnectionString))
-            {
-                conn.Open();
-
-                // 1. Dropdown for ADDING (Show all possible categories)
-                SqlDataAdapter daAll = new SqlDataAdapter("SELECT CategoryID, CategoryName FROM Categories ORDER BY CategoryName", conn);
-                DataTable dtAll = new DataTable();
-                daAll.Fill(dtAll);
-                ddlCategories.DataSource = dtAll;
-                ddlCategories.DataTextField = "CategoryName";
-                ddlCategories.DataValueField = "CategoryID";
-                ddlCategories.DataBind();
-                ddlCategories.Items.Insert(0, new ListItem("-- Select Category --", "0"));
-
-                // 2. Dropdown for PLANNER (Only show categories already in the current month's envelopes)
-                string sqlActive = @"
-            SELECT c.CategoryID, c.CategoryName 
-            FROM Categories c
-            JOIN BudgetEnvelopes e ON c.CategoryID = e.CategoryID
-            JOIN Budgets b ON e.BudgetID = b.BudgetID
-            WHERE b.UserID = @UID AND b.YearMonth = @YM
-            ORDER BY c.CategoryName";
-
-                SqlCommand cmdActive = new SqlCommand(sqlActive, conn);
-                cmdActive.Parameters.AddWithValue("@UID", CurrentUserID);
-                cmdActive.Parameters.AddWithValue("@YM", SelectedMonth);
-
-                SqlDataAdapter daActive = new SqlDataAdapter(cmdActive);
-                DataTable dtActive = new DataTable();
-                daActive.Fill(dtActive);
-
-                ddlPlannerCats.DataSource = dtActive;
-                ddlPlannerCats.DataTextField = "CategoryName";
-                ddlPlannerCats.DataValueField = "CategoryID";
-                ddlPlannerCats.DataBind();
-                ddlPlannerCats.Items.Insert(0, new ListItem("--Catorgory--", "0"));
-            }
-        }
+    
         private void ShowNotification(string message, string icon, string cssClass)
         {
             lblStatus.Text = message;
