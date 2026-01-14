@@ -182,10 +182,11 @@
                     <div style="flex: 1.5;">
                         <label>Type:</label>
                         <select id="plannerType" class="form-select w-100" onchange="calculateWhatIf()">
-                            <option value="percent">% Off</option>
-                            <option value="decrease">Decrease ($)</option> 
-                            <option value="increase">Increase ($)</option>
-                        </select>
+    <option value="percentOff">Decrease (%)</option>           <!-- Decrease by % -->
+    <option value="percentIncrease">Increase (%)</option> <!-- Increase by % -->
+    <option value="decrease">Decrease ($)</option>      <!-- Decrease by $ -->
+    <option value="increase">Increase ($)</option>      <!-- Increase by $ -->
+</select>
                     </div>
                 </div>
 
@@ -266,14 +267,22 @@
             }
         }
 
-        function togglePlanner() {
+        function togglePlanner() { const modal = document.getElementById('plannerModal'); modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex'; if (modal.style.display === 'none') { document.getElementById('resultsBox').style.display = 'none'; document.getElementById('plannerError').style.display = 'none'; document.getElementById('plannerValue').value = ''; } }
+
+        function closePlanner() {
             const modal = document.getElementById('plannerModal');
-            modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
-            if (modal.style.display === 'none') {
-                document.getElementById('resultsBox').style.display = 'none';
-                document.getElementById('plannerError').style.display = 'none';
-                document.getElementById('plannerValue').value = '';
-            }
+            const resultsBox = document.getElementById('resultsBox');
+            const errorBox = document.getElementById('plannerError');
+            const plannerValue = document.getElementById('plannerValue');
+
+            if (!modal) return;
+
+            // Explicitly close
+            modal.style.display = 'none';
+
+            if (resultsBox) resultsBox.style.display = 'none';
+            if (errorBox) errorBox.style.display = 'none';
+            if (plannerValue) plannerValue.value = '';
         }
 
         function calculateWhatIf() {
@@ -286,47 +295,56 @@
             };
 
             const currentTotalAllocated = getLitVal('<%= litTotalBudgeted.ClientID %>');
-            const monthlyIncome = getLitVal('<%= litIncomeSub.ClientID %>');
-            const targetCatId = document.getElementById('<%= ddlPlannerCats.ClientID %>').value;
-            const inputVal = parseFloat(document.getElementById('plannerValue').value);
-            const type = document.getElementById('plannerType').value;
+    const monthlyIncome = getLitVal('<%= litIncomeSub.ClientID %>');
+    const targetCatId = document.getElementById('<%= ddlPlannerCats.ClientID %>').value;
+    const inputVal = parseFloat(document.getElementById('plannerValue').value);
+    const type = document.getElementById('plannerType').value;
 
-            if (isNaN(inputVal) || targetCatId === "" || targetCatId === "0") {
-                resultsBox.style.display = 'none';
-                return;
-            }
+    if (isNaN(inputVal) || targetCatId === "" || targetCatId === "0") {
+        resultsBox.style.display = 'none';
+        return;
+    }
 
-            errorEl.style.display = 'none';
+    errorEl.style.display = 'none';
 
-            let startValue = 0;
-            const row = document.querySelector(`tr[data-catid="${targetCatId}"]`);
-            if (row) {
-                startValue = parseFloat(row.getAttribute('data-current')) || 0;
-            } else {
-                return;
-            }
+    let startValue = 0;
+    const row = document.querySelector(`tr[data-catid="${targetCatId}"]`);
+    if (row) {
+        startValue = parseFloat(row.getAttribute('data-current')) || 0;
+    } else {
+        return;
+    }
 
-            let calculatedNewVal = 0;
-            if (type === 'percent') {
-                calculatedNewVal = startValue * (1 - (inputVal / 100));
-            } else if (type === 'increase') {
-                calculatedNewVal = startValue + inputVal;
-            } else if (type === 'decrease') {
-                calculatedNewVal = Math.max(0, startValue - inputVal);
-            }
+    let calculatedNewVal = 0;
 
-            const diff = startValue - calculatedNewVal;
-            const finalTotal = currentTotalAllocated - diff;
-            const finalSavings = monthlyIncome - finalTotal;
+    switch(type) {
+        case 'percentOff':          // Decrease by %
+            calculatedNewVal = startValue * (1 - inputVal / 100);
+            break;
+        case 'percentIncrease':     // Increase by %
+            calculatedNewVal = startValue * (1 + inputVal / 100);
+            break;
+        case 'decrease':            // Decrease by $
+            calculatedNewVal = Math.max(0, startValue - inputVal);
+            break;
+        case 'increase':            // Increase by $
+            calculatedNewVal = startValue + inputVal;
+            break;
+    }
 
-            document.getElementById('newCatValText').innerText = '$' + calculatedNewVal.toLocaleString(undefined, { minimumFractionDigits: 2 });
-            document.getElementById('newTotalText').innerText = '$' + finalTotal.toLocaleString(undefined, { minimumFractionDigits: 2 });
-            document.getElementById('newSavingsText').innerText = '$' + finalSavings.toLocaleString(undefined, { minimumFractionDigits: 2 });
+    const diff = startValue - calculatedNewVal;
+    const finalTotal = currentTotalAllocated - diff;
+    const finalSavings = monthlyIncome - finalTotal;
 
-            document.getElementById('<%= hfProjectedCatID.ClientID %>').value = targetCatId;
+    document.getElementById('newCatValText').innerText = '$' + calculatedNewVal.toLocaleString(undefined, { minimumFractionDigits: 2 });
+    document.getElementById('newTotalText').innerText = '$' + finalTotal.toLocaleString(undefined, { minimumFractionDigits: 2 });
+    document.getElementById('newSavingsText').innerText = '$' + finalSavings.toLocaleString(undefined, { minimumFractionDigits: 2 });
+
+    document.getElementById('<%= hfProjectedCatID.ClientID %>').value = targetCatId;
             document.getElementById('<%= hfProjectedValue.ClientID %>').value = calculatedNewVal.toFixed(2);
 
             resultsBox.style.display = 'block';
         }
+
     </script>
 </asp:Content>

@@ -191,18 +191,27 @@ protected string GetProgressWidth(object spent, object limit)
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings[connStringName].ConnectionString))
             {
                 conn.Open();
+
+                // Ensure current month budget exists
+                SqlCommand ensureBudget = new SqlCommand(@"
+            IF NOT EXISTS(SELECT 1 FROM Budgets WHERE UserID=@UID AND YearMonth=@Cur)
+                INSERT INTO Budgets(UserID, YearMonth, TotalAmount) VALUES(@UID, @Cur, 0);", conn);
+                ensureBudget.Parameters.AddWithValue("@UID", CurrentUserID);
+                ensureBudget.Parameters.AddWithValue("@Cur", SelectedMonth);
+                ensureBudget.ExecuteNonQuery();
+
                 string sql = @"
-                    INSERT INTO BudgetEnvelopes (BudgetID, CategoryID, MonthlyLimit)
-                    SELECT 
-                        (SELECT BudgetID FROM Budgets WHERE UserID=@UID AND YearMonth=@Cur), 
-                        CategoryID, 
-                        MonthlyLimit
-                    FROM BudgetEnvelopes 
-                    WHERE BudgetID = (SELECT BudgetID FROM Budgets WHERE UserID=@UID AND YearMonth=@Prev)
-                    AND CategoryID NOT IN (
-                        SELECT CategoryID FROM BudgetEnvelopes 
-                        WHERE BudgetID = (SELECT BudgetID FROM Budgets WHERE UserID=@UID AND YearMonth=@Cur)
-                    )";
+            INSERT INTO BudgetEnvelopes (BudgetID, CategoryID, MonthlyLimit)
+            SELECT 
+                (SELECT BudgetID FROM Budgets WHERE UserID=@UID AND YearMonth=@Cur), 
+                CategoryID, 
+                MonthlyLimit
+            FROM BudgetEnvelopes 
+            WHERE BudgetID = (SELECT BudgetID FROM Budgets WHERE UserID=@UID AND YearMonth=@Prev)
+              AND CategoryID NOT IN (
+                  SELECT CategoryID FROM BudgetEnvelopes 
+                  WHERE BudgetID = (SELECT BudgetID FROM Budgets WHERE UserID=@UID AND YearMonth=@Cur)
+              )";
 
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@UID", CurrentUserID);
@@ -210,8 +219,10 @@ protected string GetProgressWidth(object spent, object limit)
                 cmd.Parameters.AddWithValue("@Prev", lastYM);
                 cmd.ExecuteNonQuery();
             }
+
             LoadGoalData();
         }
+
         protected void btnAddCategory_Click(object sender, EventArgs e)
         {
             if (ddlCategories.SelectedValue == "0" || string.IsNullOrEmpty(txtAmount.Text)) return;
@@ -389,16 +400,19 @@ protected string GetProgressWidth(object spent, object limit)
         // --- Dropdown Management ---
         protected void btnImplement_Click(object sender, EventArgs e)
         {
-            int catId = int.Parse(hfProjectedCatID.Value);
-            decimal newValue = decimal.Parse(hfProjectedValue.Value);
+            // Validate hidden field values
+            if (!int.TryParse(hfProjectedCatID.Value, out int catId)) return;
+            if (!decimal.TryParse(hfProjectedValue.Value, out decimal newValue)) return;
 
+            // Update database
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings[connStringName].ConnectionString))
             {
                 conn.Open();
                 string sql = catId == 0
                     ? "UPDATE Budgets SET TotalAmount = @Val WHERE UserID=@UID AND YearMonth=@YM"
                     : @"UPDATE BudgetEnvelopes SET MonthlyLimit = @Val 
-                WHERE CategoryID = @CID AND BudgetID = (SELECT BudgetID FROM Budgets WHERE UserID=@UID AND YearMonth=@YM)";
+                WHERE CategoryID = @CID 
+                AND BudgetID = (SELECT BudgetID FROM Budgets WHERE UserID=@UID AND YearMonth=@YM)";
 
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@Val", newValue);
@@ -408,15 +422,23 @@ protected string GetProgressWidth(object spent, object limit)
                 cmd.ExecuteNonQuery();
             }
 
-            // Replace the bottom of btnImplement_Click with this:
-            LoadGoalData(); // Refresh table
-            PopulateCategoryDropdowns(); // Refresh dropdown
+            // Refresh UI
+            LoadGoalData();
+            PopulateCategoryDropdowns();
 
-            // Trigger the Toast and close modal
+            // Show success toast
             ShowNotification("Budget updated successfully!", "💡", "success");
-            ScriptManager.RegisterStartupScript(this, GetType(), "closePlanner", "togglePlanner();", true);
+
+            // Auto-close the planner modal after 1 second
+            string script = @"
+        setTimeout(function() {
+            togglePlanner(); // make sure this function hides the modal
+        }, 1000);
+    ";
+            ScriptManager.RegisterStartupScript(this, GetType(), "closePlanner", "closePlanner();", true);
         }
-    
+
+
         private void ShowNotification(string message, string icon, string cssClass)
         {
             lblStatus.Text = message;
