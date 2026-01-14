@@ -76,20 +76,6 @@
                                 <span class="nav-text">Goal Setting</span>
                             </a>
 
-                             <a id="A1" class="nav-item" href="~/Pages/goalSettingPage.aspx" runat="server">
-     <span class="nav-icon">
-         <img runat="server" src="~/Content/images/icons/navGoalSetting.svg" alt="" aria-hidden="true" />
-     </span>
-     <span class="nav-text">Goal Setting</span>
- </a>
-
-                             <a id="A2" class="nav-item" href="~/Pages/goalSettingPage.aspx" runat="server">
-     <span class="nav-icon">
-         <img runat="server" src="~/Content/images/icons/navGoalSetting.svg" alt="" aria-hidden="true" />
-     </span>
-     <span class="nav-text">Goal Setting</span>
- </a>
-
                             <a id="navDen" class="nav-item" href="~/Pages/denPage.aspx" runat="server">
                                 <span class="nav-icon">
                                     <img runat="server" src="~/Content/images/icons/navDen.svg" alt="" aria-hidden="true" />

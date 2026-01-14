@@ -21,7 +21,7 @@
                 <span class="lang-icon">🌐</span>
                 <asp:Button runat="server" Text="Sign up" Class="signup-btn" />
             </div>
-        </header>
+        </header>git 
 
         <!-- ===== Decorative Background Images ===== -->
         <img src="../Content/images/loginSignUp/loginSignUpLine.png" class="bg-line" />
