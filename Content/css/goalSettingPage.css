@@ -1,5 +1,5 @@
 ﻿/* =========================
-   Goal Setting - Final Optimized
+   Goal Setting - Clean (no repeats) + NO add-form “boxed border”
 ========================= */
 
 body {
@@ -8,6 +8,7 @@ body {
     margin: 0;
 }
 
+/* Page wrapper */
 .goal-card {
     background-color: transparent !important;
     padding: 10px 40px;
@@ -19,7 +20,7 @@ body {
     flex-direction: column;
 }
 
-/* 1. Income Section & Inline Planner Bell */
+/* 1) Income Section + Inline Planner Button */
 .income-section {
     margin-bottom: 20px;
     padding: 0;
@@ -48,7 +49,7 @@ body {
     font-weight: 600;
     cursor: pointer;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    transition: transform 0.2s;
+    transition: transform 0.2s, background 0.2s;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -59,13 +60,13 @@ body {
         background: #ffca2c;
     }
 
-/* 2. Category Table */
+/* 2) Category Table */
 .budget-table-container {
     background: var(--c-app-bg);
     border-radius: var(--r-md);
     padding: 20px 35px;
     margin: 5px 0;
-    position: relative;
+    position: relative; /* needed for the picker dropdown positioning */
 }
 
 .budget-table {
@@ -102,9 +103,8 @@ body {
     text-align: center;
     width: 15%;
 }
-/* Centered Actions */
 
-/* 3. Action Links & Textbox */
+/* 3) Action Links + Inline Edit Textbox */
 .action-link.blue {
     color: #3b82f6 !important;
     font-weight: 500;
@@ -134,7 +134,7 @@ body {
     font-size: 16px;
 }
 
-/* 4. Month Navigation - 1/4 size increase */
+/* 4) Month Navigation */
 .month-selector-wrapper {
     display: flex;
     justify-content: center;
@@ -170,179 +170,47 @@ body {
     text-decoration: none;
 }
 
-/* 5. Budget Summary - 1/8 size increase */
+/* 5) Budget Summary */
 .budget-summary {
     font-size: 17px;
     color: var(--c-text);
     padding: 20px 0 10px 0;
 }
 
-/* 6. Add Category Button & Panel */
-.btn-add-toggle {
-    background: var(--c-accent);
-    color: #000000;
-    border: none;
-    padding: 10px 22px;
-    border-radius: 8px;
-    font-size: 15px;
-    font-weight: 400;
-    cursor: pointer;
-}
-
-.add-form-panel {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    margin-top: 15px;
-}
-
-.form-select, .form-input {
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    padding: 10px 15px;
-    font-size: 15px;
-    color: var(--c-text);
-    outline: none;
-}
-
-/* 7. CALENDAR PICKER - COMPLETE */
-.picker-dropdown {
-    position: absolute;
-    bottom: 85px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: var(--r-md);
-    padding: 15px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-    z-index: 100;
-    width: 280px;
-}
-
-.picker-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 15px;
-}
-
-#ContentPlaceHolder1_btnSwitchToYear {
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    padding: 7px 20px;
-    border-radius: 6px;
-    color: var(--c-text);
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 14px;
-    flex-grow: 1;
-    text-align: center;
-    margin-right: 10px;
-}
-
-.picker-header .blue {
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    padding: 7px 12px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-size: 12px;
-    color: #3b82f6 !important;
-}
-
-.picker-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-}
-
-    .picker-grid a {
-        padding: 12px 0;
-        text-align: center;
-        text-decoration: none;
-        color: var(--c-text);
-        background: var(--c-nav-btn);
-        border-radius: 8px;
-        font-size: 13px;
-        font-weight: 400;
-    }
-
-        .picker-grid a:hover {
-            background: var(--c-accent);
-        }
-
-    .picker-grid .active-item {
-        background: var(--c-accent) !important;
-        color: #000000 !important;
-        font-weight: 600;
-    }
-/* 1. Add Action Area Spacing */
+/* 6) Add Category Row (single horizontal line, NO boxed background) */
 .add-action-area {
-    margin-top: 30px; /* Increased padding above the button area */
-    display: flex;
-    flex-direction: column;
-}
-
-/* 2. Form Panel Layout */
-.add-form-panel {
-    display: flex;
-    gap: 15px;
-    align-items: center;
-    background: #f8fafc; /* Very light subtle background */
-    padding: 10px;
-    border-radius: 12px;
-    width: fit-content;
-}
-
-.form-actions {
+    margin-top: 5px;
     display: flex;
     align-items: center;
     gap: 12px;
+    flex-wrap: nowrap; /* force single row */
 }
 
-/* 3. Pretty Dropdown Styling */
-.custom-dropdown {
-    appearance: none; /* Removes default arrow */
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23475569' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'%3E%3C/path%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 12px center;
-    padding-right: 40px !important; /* Space for the new arrow */
-    cursor: pointer;
-    min-width: 180px;
-    border: 1px solid #cbd5e1;
-    transition: all 0.2s ease;
+.add-form-panel {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: nowrap;
+    background: transparent; /* ✅ removed “trapping” background */
+    padding: 0; /* ✅ removed padding box */
+    border-radius: 0; /* ✅ removed rounded container */
+    width: auto; /* ✅ no fit-content shrink box */
 }
 
-    .custom-dropdown:hover {
-        border-color: var(--c-accent);
-        background-color: #fff;
-    }
-
-/* Ensure form input matches dropdown height/style */
-.form-input {
-    border: 1px solid #cbd5e1;
-    transition: border-color 0.2s;
+.amount-inline {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
 
-    .form-input:focus {
-        border-color: var(--c-accent);
-    }
-
-/* Ensure Cancel button looks like a link */
-.add-form-panel .action-link.muted {
-    text-decoration: none;
-    color: var(--c-muted);
+.form-actions-inline {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    height: 42px;
 }
 
-    .add-form-panel .action-link.muted:hover {
-        color: #ef4444; /* Slight red tint on hover to signify cancel */
-    }
-
-/* 1. Pretty Dropdown - Fixed Text Alignment */
+/* 7) Shared Inputs */
 .custom-dropdown {
     appearance: none;
     -webkit-appearance: none;
@@ -351,22 +219,22 @@ body {
     background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23475569' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'%3E%3C/path%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 12px center;
-    /* Center the text vertically */
     height: 42px;
-    line-height: normal; /* Resetting this prevents text from sinking */
-    padding: 0 40px 0 15px; /* Top, Right (space for arrow), Bottom, Left */
-
+    padding: 0 40px 0 15px;
     border: 1px solid #cbd5e1;
     border-radius: 8px;
     font-size: 15px;
     color: var(--c-text);
     min-width: 200px;
     cursor: pointer;
-    box-sizing: border-box; /* Ensures padding stays inside the 42px height */
-    vertical-align: middle;
+    box-sizing: border-box;
 }
 
-/* 2. Amount Input - Matching Height */
+    .custom-dropdown:hover {
+        border-color: var(--c-accent);
+        background-color: #fff;
+    }
+
 .form-input {
     height: 42px;
     padding: 0 15px;
@@ -375,34 +243,25 @@ body {
     font-size: 15px;
     box-sizing: border-box;
     vertical-align: middle;
+    display: inline-block;
+    transition: border-color 0.2s;
 }
 
-/* 3. Form Actions - Align everything in the row */
-.add-form-panel {
-    display: flex;
-    gap: 12px;
-    align-items: center; /* Vertical center for all items in the row */
-    margin-top: 15px;
-}
+    .form-input:focus {
+        border-color: var(--c-accent);
+    }
 
-.form-actions {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    height: 42px; /* Matches the dropdown/input height */
-}
-
-/* 4. Buttons - Ensuring they match heights */
+/* 8) Buttons */
 .btn-add-toggle {
     background: var(--c-accent);
     color: #000000;
     border: none;
-    padding: 10px 24px; /* Balanced horizontal padding */
+    padding: 10px 24px;
     border-radius: 8px;
     font-size: 15px;
     font-weight: 400;
     cursor: pointer;
-    width: fit-content; /* Key: prevents it from stretching */
+    width: fit-content;
     display: inline-block;
 }
 
@@ -418,115 +277,27 @@ body {
     align-items: center;
 }
 
-#notificationZone {
-    position: fixed;
-    top: 20px; /* Distance from very top of screen */
-    left: 50%; /* Center horizontally */
-    transform: translateX(-50%); /* Perfect centering trick */
-    z-index: 10000; /* Make sure it's above everything else */
-    width: 90%; /* Responsive width */
-    max-width: 500px; /* Stops it from getting too wide on desktop */
-    pointer-events: none; /* Allows you to click "through" the zone if it's invisible */
-}
-/* Base Toast Style (defaults to Success/Green) */
-.planner-toast {
-    display: none; /* JS will change this to flex */
-    pointer-events: auto; /* Re-enable clicks for the toast itself */
-    align-items: center;
-    justify-content: center; /* Centers text/icon inside the toast */
-    gap: 12px;
-    padding: 15px 25px;
-    font-weight: 700;
-    border-radius: 12px;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    animation: slideDown 0.4s cubic-bezier(0.17, 0.67, 0.83, 0.67);
-}
-
-    /* Color States */
-    .planner-toast.success {
-        background-color: #ecfdf5;
-        color: #065f46;
-        border: 1px solid #a7f3d0;
-    }
-
-    .planner-toast.info {
-        background-color: #eff6ff;
-        color: #1e40af;
-        border: 1px solid #bfdbfe;
-    }
-
-    .planner-toast.warning {
-        background-color: #fee2e2;
-        color: #b91c1c;
-        border: 1px solid #fecaca;
-    }
-
-/* Smooth Drop-down Animation */
-@keyframes slideDown {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-
-/* 2. Fix Dropdown/Amount Text Centering */
-.custom-dropdown, .form-input {
-    height: 42px;
-    box-sizing: border-box;
-    vertical-align: middle;
-    display: inline-flex;
-    align-items: center;
-    padding-top: 0;
-    padding-bottom: 0;
-}
-
-/* 3. Action Area Spacing */
-.add-action-area {
-    margin-top: 15px; /* Spacing above the button */
-    padding-top: 10px; /* Inner padding */
-}
-
+/* 9) Budget Warning */
 .budget-warning-alert {
     padding: 15px;
     margin: 10px 0 20px 0;
     font-weight: 700;
     text-align: center;
     border-radius: 8px;
-    background-color: #fee2e2; /* Light Red */
-    color: #b91c1c; /* Dark Red */
+    background-color: #fee2e2;
+    color: #b91c1c;
     border: 1px solid #fecaca;
-    display: block; /* Ensures it takes full width */
+    display: block;
 }
 
 .alert-danger {
     color: #a94442;
     background-color: #f2dede;
     border-color: #ebccd1;
-    border-left: 5px solid #d9534f; /* Thicker red line to grab attention */
-}
-/* --- Savings & Progress Enhancements --- */
-.savings-row {
-    border-top: 1px solid #e2e8f0;
-    margin-top: 8px !important;
-    padding-top: 8px;
+    border-left: 5px solid #d9534f;
 }
 
-.savings-text {
-    color: #10b981 !important;
-}
-
-.col-health {
-    width: 25%;
-    text-align: left;
-    padding-right: 20px;
-}
-
+/* 10) Progress Bar */
 .progress-track {
     width: 100%;
     height: 8px;
@@ -572,10 +343,23 @@ body {
 }
 
 .progress-subtext {
-    font-size: 11px;
+    font-size: 12px;
     color: var(--c-muted);
+    font-weight: 400 !important;
 }
 
+/* 11) Savings row */
+.savings-row {
+    border-top: 1px solid #e2e8f0;
+    margin-top: 8px !important;
+    padding-top: 8px;
+}
+
+.savings-text {
+    color: #10b981 !important;
+}
+
+/* 12) Template button */
 .btn-template {
     text-decoration: none;
     background: #f1f5f9;
@@ -590,96 +374,179 @@ body {
         background: #e2e8f0;
     }
 
-/* --- NEW: Floating Bell Planner --- */
-.planner-bell-wrapper {
-    position: fixed;
-    bottom: 40px;
-    right: 40px;
-    z-index: 999;
+/* 13) Calendar Picker */
+/* 13) Calendar Picker */
+.picker-dropdown {
+    position: absolute;
+    bottom: 85px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: var(--r-md);
+    padding: 15px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    z-index: 100;
+    width: 280px;
 }
 
-.btn-bell {
-    background: #ffc107; /* Gold color */
-    border: none;
-    border-radius: 50%;
-    width: 65px;
-    height: 65px;
-    font-size: 28px;
-    cursor: pointer;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-    transition: all 0.3s ease;
+/* Header row inside picker */
+.picker-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+.picker-yearbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* ✅ arrows at edges */
+    gap: 10px;
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #f1f5f9; /* ✅ makes it feel like a header */
+}
+.year-arrow {
+    width: 34px;
+    height: 34px;
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 999px;
+    border: 1px solid #eef2f6;
+    background: #ffffff;
+    color: var(--c-text) !important;
+    text-decoration: none;
+    font-size: 14px;
+}
+/* Year header uses same “month display” style */
+.year-toggle {
+    flex: 1; /* ✅ fills space between arrows */
+    text-align: center;
+    background: #ffffff;
+    border: 1px solid #eef2f6;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--c-text) !important;
+    text-decoration: none;
 }
 
-    .btn-bell:hover {
-        transform: scale(1.1) rotate(10deg);
-        background: #ffca2c;
+.picker-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+    .picker-grid a {
+        padding: 12px 0;
+        text-align: center;
+        text-decoration: none;
+        color: var(--c-text);
+        background: var(--c-nav-btn);
+        border-radius: 8px;
+        font-size: 13px;
+        font-weight: 400;
     }
 
-.bell-tooltip {
-    position: absolute;
-    right: 80px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: #334155;
-    color: white;
-    padding: 6px 14px;
-    border-radius: 6px;
-    font-size: 13px;
-    white-space: nowrap;
-    opacity: 0;
+        .picker-grid a:hover {
+            background: var(--c-accent);
+        }
+
+    .picker-grid .active-item {
+        background: var(--c-accent) !important;
+        color: #000000 !important;
+        font-weight: 600;
+    }
+
+/* 14) Toast Notification */
+#notificationZone {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10000;
+    width: 90%;
+    max-width: 500px;
     pointer-events: none;
-    transition: opacity 0.2s;
 }
 
-.planner-bell-wrapper:hover .bell-tooltip {
-    opacity: 1;
+.planner-toast {
+    display: none; /* JS toggles */
+    pointer-events: auto;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 15px 25px;
+    font-weight: 700;
+    border-radius: 12px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    animation: slideDown 0.4s cubic-bezier(0.17, 0.67, 0.83, 0.67);
 }
 
-/* --- NEW: What-If Modal --- */
+    .planner-toast.success {
+        background-color: #ecfdf5;
+        color: #065f46;
+        border: 1px solid #a7f3d0;
+    }
+
+    .planner-toast.info {
+        background-color: #eff6ff;
+        color: #1e40af;
+        border: 1px solid #bfdbfe;
+    }
+
+    .planner-toast.warning {
+        background-color: #fee2e2;
+        color: #b91c1c;
+        border: 1px solid #fecaca;
+    }
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================
+   WHAT-IF PLANNER (Modal + Type row)
+========================= */
+
+/* Modal overlay */
 .planner-modal {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(15, 23, 42, 0.6); /* Semi-transparent dark blue */
-    backdrop-filter: blur(4px); /* Modern blur effect */
-    display: none; /* Controlled by JS */
+    inset: 0;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(4px);
+    display: none; /* JS toggles to flex */
     align-items: center;
     justify-content: center;
     z-index: 2000;
 }
 
+/* Modal card */
 .planner-content {
     background: #ffffff;
     padding: 30px;
     border-radius: 16px;
     width: 100%;
-    max-width: 400px;
+    max-width: 420px;
     box-shadow: 0 20px 50px rgba(0,0,0,0.2);
-    animation: slideUp 0.3s ease-out;
 }
 
-@keyframes slideUp {
-    from {
-        transform: translateY(20px);
-        opacity: 0;
-    }
-
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
+/* Header row */
 .planner-header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    justify-content: space-between;
+    margin-bottom: 16px;
     padding-bottom: 10px;
     border-bottom: 1px solid #f1f5f9;
 }
@@ -702,117 +569,65 @@ body {
         color: #ef4444;
     }
 
-
-
-/* Refined Projection Box inside Modal */
-.projection-box {
-    margin-top: 20px;
-    padding: 20px;
-    background: #f8fafc;
-    border-radius: 12px;
-    border: 1px solid #e2e8f0;
+/* Body */
+.planner-body label {
+    display: block;
+    margin: 8px 0 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #334155;
 }
 
-    .projection-box p {
-        margin: 8px 0;
-        display: flex;
-        justify-content: space-between;
-        font-size: 15px;
-    }
-
-    .projection-box strong {
-        font-size: 18px;
-        color: #3b82f6;
-    }
-
-/* Force Modal inputs to be full width */
-.planner-body .custom-dropdown,
-.planner-body .form-input {
+/* Utility classes you used */
+.w-100 {
     width: 100% !important;
-    margin-bottom: 15px;
 }
 
-/* 4. Health & Progress (Unbolded Subtext) */
-.progress-track {
-    width: 100%;
-    height: 8px;
-    background: #f1f5f9;
-    border-radius: 10px;
-    overflow: hidden;
-    margin-top: 5px;
+.mb-2 {
+    margin-bottom: 8px !important;
 }
 
-.progress-fill {
-    height: 100%;
-    transition: width 0.6s ease;
-}
-
-.bg-safe {
-    background-color: #10b981;
-}
-
-.bg-warning {
-    background-color: #f59e0b;
-}
-
-.bg-danger {
-    background-color: #ef4444;
-}
-
-.progress-subtext {
-    font-size: 12px;
-    color: var(--c-muted);
-    font-weight: 400 !important; /* Force Unbold */
-}
-
-/* 5. Add Category Panel (Tightened Padding) */
-.add-action-area {
-    margin-top: 5px; /* Reduced as requested */
-    display: flex;
-    flex-direction: column;
-}
-
-.add-form-panel {
-    display: flex;
-    gap: 12px;
-    align-items: center;
-    background: #f8fafc;
-    padding: 8px 15px; /* Thinner padding */
-    border-radius: 12px;
-    width: fit-content;
-}
-
-.custom-dropdown, .form-input {
+/* IMPORTANT: form-select base (for the "Type" dropdown too) */
+.form-select {
     height: 42px;
+    padding: 0 12px;
     border: 1px solid #cbd5e1;
     border-radius: 8px;
-    padding: 0 15px;
+    font-size: 15px;
+    background: #ffffff;
+    color: #0f172a;
     box-sizing: border-box;
 }
 
-/* 6. What-If Modal */
-.planner-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(15, 23, 42, 0.6);
-    backdrop-filter: blur(4px);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 2000;
+/* keep your custom arrow look for ddl + Type select */
+.custom-dropdown {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23475569' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 40px; /* space for arrow */
 }
 
-.planner-content {
+/* Fix: "Type" dropdown was missing this = it can look off */
+#plannerType {
+    width: 100% !important;
+}
+
+/* Input (Amt) */
+.planner-body .form-input {
+    height: 42px;
+    padding: 0 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 15px;
+    box-sizing: border-box;
     background: #ffffff;
-    padding: 30px;
-    border-radius: 16px;
-    width: 400px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+    color: #0f172a;
 }
 
+/* Results box */
 .projection-box {
     margin-top: 15px;
     padding: 15px;
@@ -821,35 +636,73 @@ body {
     border: 1px solid #bae6fd;
 }
 
-/* 7. Savings Row */
-.savings-row {
-    border-top: 1px solid #e2e8f0;
-    margin-top: 8px !important;
-    padding-top: 8px;
-}
+    .projection-box p {
+        margin: 8px 0;
+        display: flex;
+        justify-content: space-between;
+        font-size: 14px;
+    }
 
-.savings-text {
-    color: #10b981 !important;
+    .projection-box strong {
+        font-size: 16px;
+    }
+
+/* Error text */
+#plannerError {
+    color: #ef4444;
+    font-size: 12px;
+    margin-top: 10px;
 }
-.planner-toast {
-    background-color: #d1fae5;
-    border: 1px solid #10b981;
-    color: #065f46;
-    padding: 10px 15px;
-    border-radius: 6px;
+/* ACTION BAR: left + right same row */
+.workflow-actions {
+    display: flex !important;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: nowrap;
     margin-bottom: 10px;
-    font-weight: 500;
-    animation: fadeIn 0.3s ease-in-out;
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-5px);
-    }
+.workflow-left {
+    flex: 0 0 auto;
+}
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.workflow-right {
+    margin-left: auto;
+    display: flex !important;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: nowrap;
+}
+
+/* EDIT ROWS: always single row */
+.inline-edit-row {
+    display: flex !important;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: nowrap; /* <-- key */
+    margin: 6px 0 14px;
+}
+
+/* label */
+.inline-edit-label {
+    font-weight: 600;
+    color: var(--c-text);
+    white-space: nowrap;
+}
+
+/* input + validator stays together */
+.inline-edit-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+/* keep input width consistent */
+.inline-edit-input {
+    width: 180px;
+}
+
+/* prevent validators/buttons from forcing wrap */
+.inline-edit-row * {
+    flex: 0 0 auto;
 }

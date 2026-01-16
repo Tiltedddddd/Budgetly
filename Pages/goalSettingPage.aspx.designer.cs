@@ -69,6 +69,123 @@ namespace Budgetly.Pages
         protected global::System.Web.UI.WebControls.LinkButton btnCopyLastMonth;
 
         /// <summary>
+        /// btnIncomeAction control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnIncomeAction;
+
+        /// <summary>
+        /// btnBudgetLimitAction control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnBudgetLimitAction;
+
+        /// <summary>
+        /// pnlIncomeEdit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlIncomeEdit;
+
+        /// <summary>
+        /// txtIncomeEdit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtIncomeEdit;
+
+        /// <summary>
+        /// revIncome control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revIncome;
+
+        /// <summary>
+        /// btnSaveIncome control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSaveIncome;
+
+        /// <summary>
+        /// btnCancelIncome control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnCancelIncome;
+
+        /// <summary>
+        /// pnlBudgetEdit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlBudgetEdit;
+
+        /// <summary>
+        /// txtBudgetLimitEdit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBudgetLimitEdit;
+
+        /// <summary>
+        /// revBudgetLimit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revBudgetLimit;
+
+        /// <summary>
+        /// cvBudgetVsIncome control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator cvBudgetVsIncome;
+
+        /// <summary>
+        /// btnSaveBudgetLimit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSaveBudgetLimit;
+
+        /// <summary>
+        /// btnCancelBudgetLimit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnCancelBudgetLimit;
+
+        /// <summary>
         /// rptBudgetEnvelopes control.
         /// </summary>
         /// <remarks>
@@ -132,6 +249,15 @@ namespace Budgetly.Pages
         protected global::System.Web.UI.WebControls.MultiView mvPicker;
 
         /// <summary>
+        /// btnPrevYear control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnPrevYear;
+
+        /// <summary>
         /// btnSwitchToYear control.
         /// </summary>
         /// <remarks>
@@ -148,6 +274,15 @@ namespace Budgetly.Pages
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal litPickerYear;
+
+        /// <summary>
+        /// btnNextYear control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnNextYear;
 
         /// <summary>
         /// rptMonths control.
@@ -220,6 +355,33 @@ namespace Budgetly.Pages
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSubmitAdd;
+
+        /// <summary>
+        /// hfReplaceEnvId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfReplaceEnvId;
+
+        /// <summary>
+        /// hfReplaceAmt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfReplaceAmt;
+
+        /// <summary>
+        /// btnReplaceHidden control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnReplaceHidden;
 
         /// <summary>
         /// ddlPlannerCats control.
