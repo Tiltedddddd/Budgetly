@@ -15,138 +15,120 @@ namespace Budgetly.Pages
     {
 
         /// <summary>
-        /// gV_WalletScreen control.
+        /// lblError control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gV_WalletScreen;
+        protected global::System.Web.UI.WebControls.Label lblError;
 
         /// <summary>
-        /// btn_addCard control.
+        /// rptWallets control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_addCard;
+        protected global::System.Web.UI.WebControls.Repeater rptWallets;
 
         /// <summary>
-        /// pn_AddWallet control.
+        /// btnShowAdd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pn_AddWallet;
+        protected global::System.Web.UI.WebControls.Button btnShowAdd;
 
         /// <summary>
-        /// lbl_AccountName control.
+        /// pnlModal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_AccountName;
+        protected global::System.Web.UI.WebControls.Panel pnlModal;
 
         /// <summary>
-        /// tb_Name control.
+        /// lblModalTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tb_Name;
+        protected global::System.Web.UI.WebControls.Label lblModalTitle;
 
         /// <summary>
-        /// rfv_AccountName control.
+        /// hfEditingAccountID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_AccountName;
+        protected global::System.Web.UI.WebControls.HiddenField hfEditingAccountID;
 
         /// <summary>
-        /// tb_AccountType control.
+        /// txtAccountName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label tb_AccountType;
+        protected global::System.Web.UI.WebControls.TextBox txtAccountName;
 
         /// <summary>
-        /// ddl_Type control.
+        /// txtBalance control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_Type;
+        protected global::System.Web.UI.WebControls.TextBox txtBalance;
 
         /// <summary>
-        /// rfv_AccountType control.
+        /// ddlAccountType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_AccountType;
+        protected global::System.Web.UI.WebControls.DropDownList ddlAccountType;
 
         /// <summary>
-        /// lbl_Balance control.
+        /// chkGmailSync control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_Balance;
+        protected global::System.Web.UI.WebControls.CheckBox chkGmailSync;
 
         /// <summary>
-        /// tb_Balance control.
+        /// lblModalError control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tb_Balance;
+        protected global::System.Web.UI.WebControls.Label lblModalError;
 
         /// <summary>
-        /// rfv_Balance control.
+        /// btnCancel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_Balance;
+        protected global::System.Web.UI.WebControls.Button btnCancel;
 
         /// <summary>
-        /// cV_Balance control.
+        /// btnSave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CompareValidator cV_Balance;
-
-        /// <summary>
-        /// btn_Createwallet control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_Createwallet;
-
-        /// <summary>
-        /// btn_Cancel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_Cancel;
+        protected global::System.Web.UI.WebControls.Button btnSave;
     }
 }

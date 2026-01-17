@@ -318,7 +318,7 @@ body {
 
 .content-placeholder {
     flex: 1;
-    background: var(--c-surface); 
+    background: var(--c-surface); z
     border-radius: var(--r-sm);
     padding: 18px;
     display: flex;
