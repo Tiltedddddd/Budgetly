@@ -121,10 +121,10 @@ FROM Users u;
 INSERT INTO AccountImages (AccountID, ImagePath)
 SELECT a.AccountID,
        CASE a.AccountName
-           WHEN 'Trust Debit Card'   THEN '/Image/Account/trust.png'
-           WHEN 'DBS Credit Card'    THEN '/Image/Account/dbs_credit.png'
-           WHEN 'OCBC Savings Card'  THEN '/Image/Account/ocbc_savings.png'
-           WHEN 'Cash Wallet'        THEN '/Image/Account/cash.png'
+           WHEN 'Trust Debit Card'   THEN '/images/Account/trust.png'
+           WHEN 'DBS Credit Card'    THEN '/images/Account/dbs_credit.png'
+           WHEN 'OCBC Savings Card'  THEN '/images/Account/ocbc_savings.png'
+           WHEN 'Cash Wallet'        THEN '/images/Account/cash.png'
            ELSE '/Image/Account/default.png'
        END
 FROM Accounts a;
@@ -134,16 +134,16 @@ FROM Accounts a;
 ----------------------------------------------------
 INSERT INTO Categories (CategoryName, EcoWeight, IsEssential, IconPath)
 VALUES
-('Housing',0.95,1,'/icons/housing.png'),
-('Food',0.80,1,'/icons/food.png'),
-('Transportation',0.75,1,'/icons/transport.png'),
-('Utilities',0.90,1,'/icons/utilities.png'),
-('Healthcare',0.90,1,'/icons/healthcare.png'),
-('Education',0.95,1,'/icons/education.png'),
-('Shopping',0.40,0,'/icons/shopping.png'),
-('Entertainment',0.30,0,'/icons/entertainment.png'),
-('Savings',1.00,1,'/icons/savings.png'),
-('Misc',0.50,0,'/icons/misc.png');
+('Housing',0.95,1,'/images/icons/housing.png'),
+('Food',0.80,1,'/images/icons/food.png'),
+('Transportation',0.75,1,'/images/icons/transport.png'),
+('Utilities',0.90,1,'/images/icons/utilities.png'),
+('Healthcare',0.90,1,'/images/icons/healthcare.png'),
+('Education',0.95,1,'/images/icons/education.png'),
+('Shopping',0.40,0,'/images/icons/shopping.png'),
+('Entertainment',0.30,0,'/images/icons/entertainment.png'),
+('Savings',1.00,1,'/images/icons/savings.png'),
+('Misc',0.50,0,'/images/icons/misc.png');
 
 
 /* ===========================================================
@@ -505,7 +505,7 @@ VALUES
 ----------------------------------------------------
 INSERT INTO PetStatusImages (PetID, PetStatus, ImagePath)
 SELECT p.PetID, s.PetStatus,
-       CONCAT('/Image/Pet/',
+       CONCAT('/images/Pet/',
               REPLACE(LOWER(p.PetName), ' ', '_'),
               '_',
               LOWER(s.PetStatus),
@@ -539,21 +539,21 @@ JOIN Pets p ON p.PetName = v.PetName;
 ----------------------------------------------------
 INSERT INTO Badges (BadgeName, Description, IconPath, XPReward)
 VALUES
-('First Save','Saved your first $100','/Image/Badge/badge1.png',50),
-('Streak Starter','Logged transactions 3 days in a row','/Image/Badge/badge2.png',40),
-('Budget Keeper','Stayed under budget for 1 month','/Image/Badge/badge3.png',120),
-('No-Spend Day','Completed a no-spend day','/Image/Badge/badge4.png',60),
-('Eco Hero','High eco score in a month','/Image/Badge/badge5.png',100),
-('Savings Builder','Saved 10% of income','/Image/Badge/badge6.png',90),
-('Bill Boss','Paid utilities on time','/Image/Badge/badge7.png',70),
-('Food Planner','Kept food spending steady','/Image/Badge/badge8.png',80),
-('Transport Tamer','Reduced transport costs','/Image/Badge/badge9.png',90),
-('Health First','Tracked healthcare spending','/Image/Badge/badge10.png',60),
-('Learning Learner','Budgeted for education','/Image/Badge/badge11.png',70),
-('Shop Smarter','Reduced shopping spend','/Image/Badge/badge12.png',100),
-('Entertainment Balanced','Stayed within fun budget','/Image/Badge/badge13.png',80),
-('Consistency Champ','Budgeted 3 months straight','/Image/Badge/badge14.png',150),
-('Master Planner','Completed full budget setup','/Image/Badge/badge15.png',200);
+('First Save','Saved your first $100','/images/Badge/badge1.png',50),
+('Streak Starter','Logged transactions 3 days in a row','/images/Badge/badge2.png',40),
+('Budget Keeper','Stayed under budget for 1 month','/images/Badge/badge3.png',120),
+('No-Spend Day','Completed a no-spend day','/images/Badge/badge4.png',60),
+('Eco Hero','High eco score in a month','/images/Badge/badge5.png',100),
+('Savings Builder','Saved 10% of income','/images/Badge/badge6.png',90),
+('Bill Boss','Paid utilities on time','/images/Badge/badge7.png',70),
+('Food Planner','Kept food spending steady','/images/Badge/badge8.png',80),
+('Transport Tamer','Reduced transport costs','/images/Badge/badge9.png',90),
+('Health First','Tracked healthcare spending','/images/Badge/badge10.png',60),
+('Learning Learner','Budgeted for education','/images/Badge/badge11.png',70),
+('Shop Smarter','Reduced shopping spend','/images/Badge/badge12.png',100),
+('Entertainment Balanced','Stayed within fun budget','/images/Badge/badge13.png',80),
+('Consistency Champ','Budgeted 3 months straight','/images/Badge/badge14.png',150),
+('Master Planner','Completed full budget setup','/images/Badge/badge15.png',200);
 
 ----------------------------------------------------
 -- USER BADGES (GO-safe, no variables)
